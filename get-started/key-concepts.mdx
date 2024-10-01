@@ -10,23 +10,38 @@ Artemis Search is built on several interconnected components that work together 
 <Accordion title="Artemis Search Component Relationship">
   <Mermaid chart={`
     graph TD
-      A[Organization] --> B[Project]
-      B --> C[Dataset]
-      B --> D[Machine]
-      B --> E[API Key]
+      A[Organization] --> B[Projects]
+      A --> E[API Key]
+      B --> C[Datasets]
+      B --> D[Machines]
       C --> F[Embeddings]
       C --> G[Tags]
-      B --> H[Playground]
-      H --> I[Search Query]
-      I --> J[Search Results]
-      D --> J
-      C --> J
       E --> K[API Integration]
-      K --> J
+      K --> J[Search Results]
+      
+      subgraph Project
+        C
+        D
+      end
+      
+      H[Playground] -->|Explores| B
+      H --> I[Search Query]
+      I --> J
+      D -->|Multiple| J
+      C --> J
+      
+      style H fill:#f9f,stroke:#333,stroke-width:4px
+      style E fill:#ff9,stroke:#333,stroke-width:2px
   `}/>
 </Accordion>
 
-This diagram shows the hierarchical structure of Artemis Search, from the organization level down to individual search queries and results. Let's explore each of these components in more detail.
+This diagram illustrates the structure of Artemis Search, highlighting key relationships:
+
+1. Multiple machines can be assigned to a single project (shown by the "Multiple" label on the arrow from Machines to Search Results).
+2. API keys are assigned at the organization level, not per project.
+3. The Playground is separate from projects and can be used to explore different projects (indicated by its position outside the project subgraph and its "Explores" relationship to Projects).
+
+Let's explore each of these components in more detail.
 
 ## Intelligent Search
 
