@@ -1,0 +1,108 @@
+---
+title: "API Keys"
+description: "Manage and use API keys for Artemis Search"
+---
+
+# API Keys
+
+API keys are used to authenticate your requests when using the Artemis Search API. This page explains how to manage and use your API keys securely.
+
+## Generating a New API Key
+
+<Steps>
+  <Step title="Navigate to API Keys">
+    Go to Settings > API Keys in your Artemis Search dashboard.
+  </Step>
+  <Step title="Create New Key">
+    Click on the "Generate New API Key" button.
+  </Step>
+  <Step title="Set Permissions">
+    Choose the appropriate permissions for your API key based on your needs.
+  </Step>
+  <Step title="Name Your Key">
+    Give your API key a descriptive name to easily identify its purpose.
+  </Step>
+  <Step title="Copy and Save">
+    Copy your new API key and store it securely. You won't be able to view it again.
+  </Step>
+</Steps>
+
+<Warning>
+  Never share your API keys publicly or commit them to version control systems.
+</Warning>
+
+## Using Your API Key
+
+To authenticate API requests, include your API key in the `Authorization` header:
+
+<CodeGroup>
+```bash
+curl -X GET "https://api.search-artemis.com/v1/projects" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```python
+import requests
+
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.get("https://api.search-artemis.com/v1/projects", headers=headers)
+```
+
+```javascript
+const axios = require('axios');
+
+const headers = {
+  'Authorization': 'Bearer YOUR_API_KEY'
+};
+
+axios.get('https://api.search-artemis.com/v1/projects', { headers })
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+</CodeGroup>
+
+## Managing API Keys
+
+<CardGroup cols={2}>
+  <Card title="View Active Keys" icon="eye">
+    See a list of all your active API keys, including their names and last used dates.
+  </Card>
+  <Card title="Revoke Keys" icon="trash">
+    Immediately revoke an API key if it's compromised or no longer needed.
+  </Card>
+  <Card title="Update Permissions" icon="pen-to-square">
+    Modify the permissions associated with an existing API key.
+  </Card>
+  <Card title="Rotate Keys" icon="rotate">
+    Regularly generate new keys and deprecate old ones for enhanced security.
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<Accordion title="Security Tips">
+  - Store API keys securely, such as in environment variables or a secure key management system.
+  - Use different API keys for development and production environments.
+  - Implement IP whitelisting for additional security.
+  - Monitor API key usage and set up alerts for unusual activity.
+</Accordion>
+
+<Accordion title="Rate Limiting">
+  API requests are subject to rate limiting to ensure fair usage. Current limits are:
+
+  - 1000 requests per minute for standard accounts
+  - 5000 requests per minute for enterprise accounts
+
+  <Note>
+    Exceeding these limits will result in a `429 Too Many Requests` response.
+  </Note>
+</Accordion>
+
+For any issues with API keys or to request increased rate limits, please contact our support team at [pallavi@artemisar.com](mailto:pallavi@artemisar.com).

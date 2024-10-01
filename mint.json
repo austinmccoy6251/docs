@@ -5,14 +5,22 @@
     "dark": "https://search-artemis.s3.amazonaws.com/logo-dark.png",
     "light": "https://search-artemis.s3.amazonaws.com/logo.png"
   },
+  "api": {
+    "baseUrl": "https://api.search-artemis.com",
+    "auth": {
+      "method": "bearer"
+    },
+    "playground": {
+      "mode": "hide"
+    }
+  },
   "favicon": "https://search-artemis.s3.amazonaws.com/spiral.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+    "primary": "#000000",
+    "light": "#EBECED",
+    "dark": "#0A0C10",
+    "background": {
+      "dark": "#000000"
     }
   },
   "topbarLinks": [
@@ -110,8 +118,7 @@
     {
       "group": "Billing and Usage",
       "pages": [
-        "billing-and-usage/understanding-billing",
-        "billing-and-usage/usage-metrics"
+        "billing-and-usage/understanding-billing"
       ]
     }
   ],
