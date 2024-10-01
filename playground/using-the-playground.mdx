@@ -11,10 +11,10 @@ To access the Playground:
 
 <Steps>
   <Step title="Navigate to your project">
-    Log in to your Artemis Search account and select the project you want to work with.
+    Log in to your Artemis Search account and select the project you want to work with from the Project Dashboard.
   </Step>
   <Step title="Open the Playground">
-    Click on the "Open in Playground" button in the top-right corner of your project page.
+    Click on the "Playground" button in the top-right corner of your project page.
   </Step>
 </Steps>
 
@@ -22,6 +22,7 @@ To access the Playground:
 
 The Playground is divided into two main sections:
 
+<CardGroup cols={2}>
 <Card title="Left Column: Settings and Search" icon="sliders">
   Configure your search parameters and enter your search query.
 </Card>
@@ -29,23 +30,24 @@ The Playground is divided into two main sections:
 <Card title="Right Column: Results" icon="table">
   View the paginated table of search results returned from your query.
 </Card>
+</CardGroup>
 
 ## Configuring Your Search
 
 <AccordionGroup>
-  <Accordion title="Project Selection" icon="project-diagram">
+  <Accordion title="Project Selection" >
     Use the 'Project' dropdown to select the activated project you want to experiment with.
   </Accordion>
   
-  <Accordion title="Synthetic Dataset Size" icon="database">
+  <Accordion title="Synthetic Dataset Size" >
     Adjust the 'Synthetic Dataset Size' input to control how much synthetic data is used for each search request. Our model generates this data to train on when searching.
   </Accordion>
   
-  <Accordion title="Probability Threshold" icon="percentage">
+  <Accordion title="Probability Threshold" >
     Set the 'Proba Threshold' to filter and keep only results above the specified probability. This reflects the likelihood that a result matches your search.
   </Accordion>
   
-  <Accordion title="Top K Threshold" icon="sort-amount-down">
+  <Accordion title="Top K Threshold" >
     Use the 'Top K Threshold' to filter and keep only the top-k results.
   </Accordion>
 </AccordionGroup>

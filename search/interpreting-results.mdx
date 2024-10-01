@@ -20,7 +20,7 @@ Each search result in Artemis Search contains the following key components:
 The `proba` value indicates how likely it is that the result matches your search criteria:
 
 <CardGroup cols={2}>
-  <Card title="High Probability (> 0.8)" icon="check-circle">
+  <Card title="High Probability (> 0.8)" icon="circle-check">
     Strong match to your search query. These results are highly relevant.
   </Card>
   <Card title="Medium Probability (0.5 - 0.8)" icon="circle-half-stroke">
@@ -81,7 +81,7 @@ In this example:
 2. "SecureData Systems" is moderately relevant (0.72 probability). While not specifically mentioning HIPAA, it's in a related field.
 3. "MediCare Innovations" has a lower relevance (0.45 probability). It's in the medical field but doesn't indicate HIPAA compliance.
 
-## Visualizing Results
+{/* ## Visualizing Results
 
 <Note>
   The following is a placeholder for a data visualization component. In a real implementation, this would be a dynamic chart based on actual search results.
@@ -109,10 +109,9 @@ const ResultChart = () => (
 );
 
 export default ResultChart;
-```
+``` */}
 
 ## Next Steps
 
-- Learn how to [refine your search queries](/search/refining-queries)
-- Explore [advanced search techniques](/search/advanced-techniques)
-- Understand how to [integrate search results](/integrations/overview) into your applications
+- Learn more about [search parameters](/search/search-parameters)
+- Understand how to [interpret search results](/search/interpreting-results)

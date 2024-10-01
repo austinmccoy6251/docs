@@ -1,126 +1,97 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Artemis Search",
-  "logo": {
-    "dark": "https://search-artemis.s3.amazonaws.com/logo-dark.png",
-    "light": "https://search-artemis.s3.amazonaws.com/logo.png"
-  },
-  "api": {
-    "baseUrl": "https://api.search-artemis.com",
-    "auth": {
-      "method": "bearer"
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "Artemis Search",
+    "logo": {
+        "dark": "https://search-artemis.s3.amazonaws.com/logo-dark.png",
+        "light": "https://search-artemis.s3.amazonaws.com/logo.png"
     },
-    "playground": {
-      "mode": "hide"
-    }
-  },
-  "favicon": "https://search-artemis.s3.amazonaws.com/spiral.png",
-  "colors": {
-    "primary": "#000000",
-    "light": "#EBECED",
-    "dark": "#0A0C10",
-    "background": {
-      "dark": "#000000"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:pallavi@artemisar.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://app.search-artemis.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Website",
-      "icon": "globe",
-      "url": "https://search-artemis.com"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "get-started/quickstart",
-        "get-started/key-concepts",
-        "get-started/authentication"
-      ]
+    "api": {
+        "baseUrl": "https://api.search-artemis.com",
+        "auth": {
+            "method": "bearer"
+        },
+        "playground": {
+            "mode": "hide"
+        }
     },
-    {
-      "group": "Projects",
-      "pages": [
-        "projects/understanding-projects",
-        "projects/create-a-project",
-        "projects/manage-projects"
-      ]
+    "favicon": "images/favicon.png",
+    "colors": {
+        "primary": "#000000",
+        "light": "#EBECED",
+        "dark": "#0A0C10",
+        "background": {
+            "dark": "#000000"
+        }
     },
-    {
-      "group": "Datasets",
-      "pages": [
-        "datasets/understanding-datasets",
-        "datasets/upload-a-dataset",
-        "datasets/manage-datasets"
-      ]
+    "topbarLinks": [
+        {
+            "name": "Book a Meeting",
+            "url": "https://cal.com/austin-mccoy-tlusdm/learn-about-artemis-search"
+        }
+    ],
+    "topbarCtaButton": {
+        "name": "Dashboard",
+        "url": "https://app.search-artemis.com"
     },
-    {
-      "group": "Machines",
-      "pages": [
-        "machines/understanding-machines",
-        "machines/add-a-machine",
-        "machines/manage-machines"
-      ]
-    },
-    {
-      "group": "Search",
-      "pages": [
-        "search/performing-a-search",
-        "search/search-parameters",
-        "search/interpreting-results"
-      ]
-    },
-    {
-      "group": "Playground",
-      "pages": [
-        "playground/using-the-playground",
-        "playground/experimenting-with-searches"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "api-reference/introduction",
-        "api-reference/endpoint/search"
-      ]
-    },
-    {
-      "group": "Organizations and Teams",
-      "pages": [
-        "organizations-and-teams/managing-organizations",
-        "organizations-and-teams/team-management"
-      ]
-    },
-    {
-      "group": "Settings",
-      "pages": [
-        "settings/account-settings",
-        "settings/api-keys"
-      ]
-    },
-    {
-      "group": "Billing and Usage",
-      "pages": [
-        "billing-and-usage/understanding-billing"
-      ]
-    }
-  ],
-  "footerSocials": {}
+    "tabs": [
+        {
+            "name": "API Reference",
+            "url": "api-reference"
+        }
+    ],
+    "anchors": [
+        {
+            "name": "Website",
+            "icon": "globe",
+            "url": "https://search-artemis.com"
+        },
+        {
+            "name": "Demo",
+            "icon": "bolt-lightning",
+            "url": "https://search-artemis.com/demo"
+        }
+    ],
+    "navigation": [
+        {
+            "group": "Get Started",
+            "pages": ["get-started/quickstart", "get-started/key-concepts"]
+        },
+        {
+            "group": "Projects",
+            "pages": ["projects/understanding-projects", "projects/create-a-project", "projects/manage-projects"]
+        },
+        {
+            "group": "Datasets",
+            "pages": ["datasets/understanding-datasets", "datasets/upload-a-dataset", "datasets/manage-datasets"]
+        },
+        {
+            "group": "Machines",
+            "pages": ["machines/understanding-machines", "machines/create-a-machine", "machines/manage-machines"]
+        },
+        {
+            "group": "Search",
+            "pages": ["search/performing-a-search", "search/search-parameters", "search/interpreting-results"]
+        },
+        {
+            "group": "Playground",
+            "pages": ["playground/using-the-playground", "playground/experimenting-with-searches"]
+        },
+        {
+            "group": "API Reference",
+            "pages": ["api-reference/introduction", "api-reference/endpoint/search"]
+        },
+        {
+            "group": "Organizations and Teams",
+            "pages": ["organizations-and-teams/managing-organizations", "organizations-and-teams/team-management"]
+        },
+        {
+            "group": "Settings",
+            "pages": ["settings/account-settings", "settings/api-keys"]
+        },
+        {
+            "group": "Billing and Usage",
+            "pages": ["billing-and-usage/understanding-billing"]
+        }
+    ],
+    "footerSocials": {}
 }

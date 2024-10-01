@@ -1,25 +1,23 @@
 ---
-title: "Quickstart"
-description: "Get started with Artemis Search in minutes"
+title: 'Quickstart'
+description: 'Get started with Artemis Search in minutes'
 ---
 
 Artemis Search is a powerful technology that allows you to perform "intelligent" searches on datasets consisting of embeddings and associated tags. Our search is designed to excel at searches that require "reasoning" and outperforms RAG.
 
-<Note>
-  To get started quickly, follow these steps to set up your first project and run a search.
-</Note>
+<Note>To get started quickly, follow these steps to set up your first project and run a search.</Note>
 
 ## 1. Sign up for an account
 
 Create an account or log in to Artemis Search:
 
 <CardGroup cols={2}>
-  <Card title="Sign Up" icon="user-plus" href="https://app.search-artemis.com/signup">
-    Create a new account with email & password or Google Login
-  </Card>
-  <Card title="Log In" icon="right-to-bracket" href="https://app.search-artemis.com/login">
-    Access your existing account
-  </Card>
+    <Card title="Sign Up" icon="user-plus" href="https://app.search-artemis.com/signup">
+        Create a new account with email & password or Google Login
+    </Card>
+    <Card title="Log In" icon="right-to-bracket" href="https://app.search-artemis.com/login">
+        Access your existing account
+    </Card>
 </CardGroup>
 
 ## 2. Create a project
@@ -43,22 +41,23 @@ In your new project:
 3. Name your dataset and upload your file.
 
 <Note>
-  Each dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a "tag" column (containing associated string values).
+    Each dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a
+    "tag" column (containing associated string values).
 </Note>
 
 <Tip>
-  You can use the provided `sample_company_dataset` with 1000 company descriptions from Crunchbase to get started quickly.
+    You can use the provided `sample_company_dataset` with 1000 company descriptions from Crunchbase to get started quickly.
 </Tip>
 
 ## 4. Activate your dataset
 
 Activating a dataset makes it the current dataset used for searches in your project.
 
-1. Click the ellipsis (…) next to your dataset in the table.
+1. Click the ellipsis (⋮) next to your dataset in the table.
 2. Select "Activate" from the options.
 
 <Note>
-  Only one dataset can be active per project. Activating a new dataset will automatically deactivate the previously active one.
+    Only one dataset can be active per project. Activating a new dataset will automatically deactivate the previously active one.
 </Note>
 
 ## 5. Add a machine
@@ -69,9 +68,7 @@ Machines are the computational resources that run our ML model on your dataset t
 2. Click "Add Machine" at the bottom of the table.
 3. Wait for the machine to start up (stay on the page during this process).
 
-<Note>
-  Adding a machine may take a few minutes. Your project needs at least one machine to be operational.
-</Note>
+<Note>Adding a machine may take a few minutes. Your project needs at least one machine to be operational.</Note>
 
 ## 6. Open the playground
 
@@ -86,20 +83,18 @@ Once your project is "active" (has at least one machine assigned and an activate
 In the playground:
 
 1. Use the left column to configure your search settings:
-   - Adjust the "Synthetic Dataset Size" to control how much synthetic data is used for each search.
-   - Set the "Proba Threshold" to filter results based on their probability of matching the search.
-   - Adjust the "Top K Threshold" to limit the number of results returned.
+    - Adjust the "Synthetic Dataset Size" to control how much synthetic data is used for each search.
+    - Set the "Proba Threshold" to filter results based on their probability of matching the search.
+    - Adjust the "Top K Threshold" to limit the number of results returned.
 2. Enter your search query in the "Search Query" text area.
 3. Click the "Complete Search" button.
 
 Your search results will appear in the right column, displaying the associated tags and probabilities for each result.
 
-<Check>
-  Congratulations! You've just run your first intelligent search with Artemis Search.
-</Check>
+<Check>Congratulations! You've just run your first intelligent search with Artemis Search.</Check>
 
 ## Next steps
 
-- Explore the [Key Concepts](/key-concepts) to understand how Artemis Search works
-- Learn how to [manage your projects](/projects) effectively
-- Dive into our [API documentation](/api-reference) to integrate Artemis Search into your applications
+-   Explore the [Key Concepts](/get-started/key-concepts) to understand how Artemis Search works
+-   Learn how to [manage your projects](/projects/manage-projects) effectively
+-   Dive into our [API documentation](/api-reference) to integrate Artemis Search into your applications

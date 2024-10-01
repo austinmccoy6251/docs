@@ -7,26 +7,6 @@ description: "Manage and use API keys for Artemis Search"
 
 API keys are used to authenticate your requests when using the Artemis Search API. This page explains how to manage and use your API keys securely.
 
-## Generating a New API Key
-
-<Steps>
-  <Step title="Navigate to API Keys">
-    Go to Settings > API Keys in your Artemis Search dashboard.
-  </Step>
-  <Step title="Create New Key">
-    Click on the "Generate New API Key" button.
-  </Step>
-  <Step title="Set Permissions">
-    Choose the appropriate permissions for your API key based on your needs.
-  </Step>
-  <Step title="Name Your Key">
-    Give your API key a descriptive name to easily identify its purpose.
-  </Step>
-  <Step title="Copy and Save">
-    Copy your new API key and store it securely. You won't be able to view it again.
-  </Step>
-</Steps>
-
 <Warning>
   Never share your API keys publicly or commit them to version control systems.
 </Warning>
@@ -68,7 +48,7 @@ axios.get('https://api.search-artemis.com/v1/projects', { headers })
 ```
 </CodeGroup>
 
-## Managing API Keys
+{/* ## Managing API Keys
 
 <CardGroup cols={2}>
   <Card title="View Active Keys" icon="eye">
@@ -83,7 +63,7 @@ axios.get('https://api.search-artemis.com/v1/projects', { headers })
   <Card title="Rotate Keys" icon="rotate">
     Regularly generate new keys and deprecate old ones for enhanced security.
   </Card>
-</CardGroup>
+</CardGroup> */}
 
 ## Best Practices
 
