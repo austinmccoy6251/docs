@@ -1,0 +1,91 @@
+---
+title: "Key Concepts"
+description: "Understanding the core components of Artemis Search"
+---
+
+Artemis Search is built on several key concepts that enable powerful, reasoning-based searches. Understanding these concepts will help you make the most of our technology.
+
+## Intelligent Search
+
+<Accordion title="What makes our search 'intelligent'?">
+  Artemis Search goes beyond traditional keyword matching or simple semantic similarity. Our technology excels at searches that require "reasoning," allowing it to understand and interpret complex queries in context.
+
+For example, when searching for "companies that require HIPAA compliance," our system doesn't just find companies related to medicine or HIPAA compliance. It actually reasons about which companies would be subject to HIPAA regulations based on their descriptions and activities.
+
+</Accordion>
+
+## Projects
+
+Projects are the highest level of organization in Artemis Search. Each project is dedicated to a particular search task.
+
+<Accordion title="What defines a project?">
+  A project consists of:
+  - A unique name and description
+  - One or more datasets
+  - One or more machines
+  - Configuration settings (e.g., model type)
+
+Think of a project as a self-contained environment for a specific search use case.
+
+</Accordion>
+
+## Datasets
+
+Datasets are the foundation of your searches. They contain the information that Artemis Search will process and query.
+
+<Accordion title="What's in a dataset?">
+  Each dataset is a pickled pandas dataframe with two essential columns:
+  1. `embedding`: Contains OpenAI text-large-3 embeddings of the text you want to search through.
+  2. `tag`: Contains string values associated with each embedding, which will be returned as the content associated with each search result.
+
+You can have multiple datasets in a project, but only one can be active at a time.
+
+</Accordion>
+
+## Machines
+
+Machines are the computational resources that power your searches.
+
+<Accordion title="How do machines work?">
+	- Each machine runs our ML model on the active dataset when responding to
+	search requests. - You can have multiple machines per project for load
+	balancing. - At least one machine must be assigned to a project for it to be
+	active. - Requests are automatically load-balanced among available machines.
+</Accordion>
+
+## Playground
+
+The playground is where you can experiment with and fine-tune your searches.
+
+<Accordion title="What can you do in the playground?">
+	In the playground, you can: - Select which project to experiment with -
+	Adjust search parameters like synthetic dataset size, probability threshold,
+	and top-K threshold - Enter search queries - View and analyze search results
+	in real-time
+</Accordion>
+
+## Search Parameters
+
+<Accordion title="What parameters can you adjust?">
+  - **Synthetic Dataset Size**: Controls how much synthetic data is generated for each search request.
+  - **Probability Threshold**: Filters results to keep only those above a certain probability of matching the search query.
+  - **Top-K Threshold**: Limits the number of top results returned.
+
+Adjusting these parameters allows you to fine-tune the balance between search accuracy and performance.
+
+</Accordion>
+
+## API Integration
+
+Artemis Search provides a RESTful API for seamless integration with your applications.
+
+<Accordion title="How to use the API?">
+  - Each project has its own API key for authentication.
+  - The main endpoint is `/search`, which accepts parameters like `search_query`, `num_batches`, `clear_flag`, and `top_k`.
+  - API requests must include your API token in the Authorization header.
+
+For detailed API documentation, check out our [API Reference](/api-reference) section.
+
+</Accordion>
+
+Understanding these key concepts will help you leverage the full power of Artemis Search in your projects. If you're ready to start building, head over to our [Quickstart Guide](/quickstart) to set up your first project.
