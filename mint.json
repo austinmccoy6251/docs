@@ -3,7 +3,8 @@
   "name": "Artemis Search",
   "logo": {
     "dark": "/logo/logo-dark.png",
-    "light": "/logo/logo.png"
+    "light": "/logo/logo.png",
+    "href": "https://search-artemis.com"
   },
   "api": {
     "baseUrl": "https://api.search-artemis.com",
