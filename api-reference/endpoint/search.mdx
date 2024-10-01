@@ -1,34 +1,39 @@
 ---
-title: 'Search API'
-openapi: 'GET /search'
-description: 'Perform an intelligent search on your dataset'
+title: '/search'
+openapi: 'POST /search'
 ---
 
-# Search
+## Header
 
-The Search API allows you to perform intelligent searches on your dataset. It excels at searches that require "reasoning" and can return highly relevant results based on complex queries.
+<ParamField header="Authorization" type="string"  required>
+  Bearer authentication header of the form `Bearer <API_KEY>`, where `<API_KEY>` is your organization's API key.
+</ParamField>
 
-## Search Request
+## Body
 
-<ParamField query="search_query" type="string" required>
+<ParamField query="projectId" type="string" required>
+  The project ID to perform the search on. This is displayed in the URL when viewing your project on Artemis Search.
+</ParamField>
+
+<ParamField query="searchQuery" type="string" required>
   The search query string. For example, "companies that require HIPAA compliance"
 </ParamField>
 
-<ParamField query="num_batches" type="integer" default="1">
+<ParamField query="numberOfBatches" type="integer" minimum="10" maximum="70" required>
   The number of batches of synthetic data to generate for the search. Increasing this may improve search quality but will increase response time.
 </ParamField>
 
-<ParamField query="clear_flag" type="boolean" default="false">
+<ParamField query="clearFlag" type="boolean" required>
   If set to true, clears any cached results for this query.
 </ParamField>
 
-<ParamField query="top_k" type="integer" default="10">
+<ParamField query="topK" type="integer" required>
   The maximum number of results to return.
 </ParamField>
 
-## Search Response
+## Response
 
-<ResponseField name="results" type="array">
+<ResponseField name="data" type="array | null">
   <Expandable title="properties">
     <ResponseField name="tag" type="string">
       The tag associated with the matching embedding.
@@ -39,18 +44,39 @@ The Search API allows you to perform intelligent searches on your dataset. It ex
   </Expandable>
 </ResponseField>
 
+<ResponseField name="success" type="boolean">
+  Indicates if the search was successful.
+</ResponseField>
+
+<ResponseField name="errorMessage" type="string | null">
+  An error message if the search was not successful.
+</ResponseField>
+
 <RequestExample>
-```bash Example Request
-curl --request GET \
-  --url 'https://api.search-artemis.com/v1/search?search_query=companies%20that%20require%20HIPAA%20compliance&num_batches=2&top_k=5' \
-  --header 'Authorization: Bearer YOUR_API_KEY'
+```js Example Request
+fetch('https://api.search-artemis.com/search', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer YOUR_API_KEY`,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    projectId: 'YOUR_PROJECT_ID',
+    searchQuery: 'companies that require HIPAA compliance',
+    numberOfBatches: 50,
+    clearFlag: true,
+    topK: 5
+  })
+})
+.then(response => response.json())
+
 ```
 </RequestExample>
 
 <ResponseExample>
 ```json Response
 {
-  "results": [
+  "data": [
     {
       "tag": "Acme Healthcare Solutions",
       "proba": 0.95
@@ -71,31 +97,9 @@ curl --request GET \
       "tag": "Compliance Med",
       "proba": 0.85
     }
-  ]
-}
-```
-</ResponseExample>
-
-## Error Responses
-
-<ResponseField name="error" type="object">
-  <Expandable title="properties">
-    <ResponseField name="code" type="string">
-      An error code indicating the type of error that occurred.
-    </ResponseField>
-    <ResponseField name="message" type="string">
-      A human-readable description of the error.
-    </ResponseField>
-  </Expandable>
-</ResponseField>
-
-<ResponseExample>
-```json Error Response
-{
-  "error": {
-    "code": "invalid_parameter",
-    "message": "The 'search_query' parameter is required."
-  }
+  ],
+  "success": true,
+  "errorMessage": null
 }
 ```
 </ResponseExample>
