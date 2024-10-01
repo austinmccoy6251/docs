@@ -1,0 +1,55 @@
+---
+title: "Understanding Projects"
+description: "Learn about projects in Artemis Search and how they organize your search tasks"
+---
+
+Projects are the highest level of organization in Artemis Search. Each project is dedicated to a particular search task, allowing you to efficiently manage and configure your intelligent searches.
+
+## What is a Project?
+
+A project in Artemis Search contains:
+
+- One or more datasets
+- One or more machines
+- Configuration settings for your search task
+
+<Note>
+  Projects are designed to isolate different search tasks. For example, if you're creating a search for companies, you'd dedicate one project to it.
+</Note>
+
+## Key Components of a Project
+
+<CardGroup cols={2}>
+  <Card title="Datasets" icon="database">
+    Collections of embeddings and associated tags that you want to search through.
+  </Card>
+  <Card title="Machines" icon="server">
+    Computational resources that respond to search requests and run our ML model on the active dataset.
+  </Card>
+  <Card title="Model Type" icon="microchip">
+    Currently, only the "Mini" model type is available for all projects.
+  </Card>
+  <Card title="Configuration" icon="gears">
+    Settings that define how your project operates and processes search queries.
+  </Card>
+</CardGroup>
+
+## Project Status
+
+The status of your project is determined by two main factors:
+
+1. **Active Dataset**: At least one dataset must be activated for the project to be operational.
+2. **Assigned Machines**: The project needs at least one machine assigned to process search requests.
+
+<Warning>
+  Your project must have both an active dataset and at least one assigned machine to be considered "active" and ready for use in the playground.
+</Warning>
+
+## Next Steps
+
+Now that you understand the basics of projects in Artemis Search, you're ready to:
+
+- [Create a Project](/create-a-project)
+- [Manage Projects](/manage-projects)
+
+If you have any questions about projects or need assistance, don't hesitate to contact our support team at [pallavi@artemisar.com](mailto:pallavi@artemisar.com).

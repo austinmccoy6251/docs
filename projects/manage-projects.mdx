@@ -1,0 +1,119 @@
+---
+title: "Manage Projects"
+description: "Learn how to configure, update, and maintain your Artemis Search projects"
+---
+
+Once you've created a project in Artemis Search, you'll need to manage various aspects to ensure it's running efficiently and meeting your search needs. This guide covers the key management tasks for your projects.
+
+## Project Details
+
+<Accordion title="Edit Project Information">
+  To edit your project's name, description, or model type:
+
+  1. Navigate to the project page
+  2. Locate the "Project Details" card
+  3. Make your changes
+  4. Click "Save Changes" in the top-right corner of the page
+</Accordion>
+
+<Accordion title="Delete a Project">
+  <Warning>
+    Deleting a project is irreversible. Make sure you want to permanently remove the project and all its associated data.
+  </Warning>
+
+  To delete a project:
+
+  1. Go to the project page
+  2. Click the "Delete" button in the top-right corner
+  3. Confirm the deletion when prompted
+</Accordion>
+
+## Managing Datasets
+
+<Accordion title="Add a Dataset">
+  To add a dataset to your project:
+
+  1. Find the "Datasets" card on the project page
+  2. Click "Add Dataset" at the bottom of the table
+  3. Name your dataset and upload the file
+  4. Wait for the upload to complete (stay on the page during this process)
+
+  <Note>
+    Each dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a "tag" column (containing associated string values).
+  </Note>
+</Accordion>
+
+<Accordion title="Activate a Dataset">
+  To set a dataset as active for your project:
+
+  1. In the "Datasets" table, click the ellipsis (...) next to the dataset
+  2. Select "Activate"
+
+  <Warning>
+    Only one dataset can be active per project. Activating a new dataset will deactivate the currently active one.
+  </Warning>
+</Accordion>
+
+<Accordion title="Edit or Delete a Dataset">
+  To edit a dataset's name or delete it:
+
+  1. Click the ellipsis (...) next to the dataset in the "Datasets" table
+  2. Choose "Edit" to rename the dataset, or "Delete" to remove it
+</Accordion>
+
+## Managing Machines
+
+<Accordion title="Add a Machine">
+  To add a machine to your project:
+
+  1. Locate the "Machines" card on the project page
+  2. Click "Add Machine" at the bottom of the table
+  3. Wait for the machine to start up (stay on the page during this process)
+</Accordion>
+
+<Accordion title="Delete a Machine">
+  To remove a machine from your project:
+
+  1. In the "Machines" table, click the ellipsis (...) next to the machine
+  2. Select "Delete"
+  3. Wait for the deletion process to complete
+</Accordion>
+
+<Note>
+  Your project must have at least one machine to be active. Machines automatically handle load balancing for search requests.
+</Note>
+
+## Project Status
+
+Monitor your project's status using the Project Status card, which displays:
+
+- Monthly Accrued Cost (coming soon)
+- Active Machines
+- Uptime (coming soon)
+- Requests (coming soon)
+
+## Using the Playground
+
+Once your project is active (has an active dataset and at least one machine), you can use it in the playground:
+
+1. Navigate to the project page
+2. Click "Open in Playground" in the top-right corner
+
+In the playground, you can:
+
+- Configure search settings
+- Enter search queries
+- View paginated search results
+
+<Tip>
+  The playground is an excellent way to test and refine your search queries before integrating them into your application.
+</Tip>
+
+## Next Steps
+
+Now that you know how to manage your projects, you might want to:
+
+- Learn about [API integration](/api-reference/introduction) to incorporate Artemis Search into your applications
+- Explore [advanced search techniques](/advanced-search) to optimize your queries
+
+If you need any assistance with project management, please reach out to our support team at [pallavi@artemisar.com](mailto:pallavi@artemisar.com).
