@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Artemis Search",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "https://search-artemis.s3.amazonaws.com/logo-dark.png",
+    "light": "https://search-artemis.s3.amazonaws.com/logo.png"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "https://search-artemis.s3.amazonaws.com/spiral.png",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -18,12 +18,12 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:pallavi@artemisar.com"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.search-artemis.com"
   },
   "tabs": [
     {
@@ -33,59 +33,89 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "Website",
+      "icon": "globe",
+      "url": "https://search-artemis.com"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "get-started/quickstart",
+        "get-started/key-concepts",
+        "get-started/authentication"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Projects",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "projects/understanding-projects",
+        "projects/create-a-project",
+        "projects/manage-projects"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Datasets",
       "pages": [
-        "api-reference/introduction"
+        "datasets/understanding-datasets",
+        "datasets/upload-a-dataset",
+        "datasets/manage-datasets"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Machines",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "machines/understanding-machines",
+        "machines/add-a-machine",
+        "machines/manage-machines"
+      ]
+    },
+    {
+      "group": "Search",
+      "pages": [
+        "search/performing-a-search",
+        "search/search-parameters",
+        "search/interpreting-results"
+      ]
+    },
+    {
+      "group": "Playground",
+      "pages": [
+        "playground/using-the-playground",
+        "playground/experimenting-with-searches"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api-reference/introduction",
+        "api-reference/authentication",
+        "api-reference/search-endpoint"
+      ]
+    },
+    {
+      "group": "Organizations and Teams",
+      "pages": [
+        "organizations-and-teams/managing-organizations",
+        "organizations-and-teams/team-management"
+      ]
+    },
+    {
+      "group": "Settings",
+      "pages": [
+        "settings/account-settings",
+        "settings/api-keys"
+      ]
+    },
+    {
+      "group": "Billing and Usage",
+      "pages": [
+        "billing-and-usage/understanding-billing",
+        "billing-and-usage/usage-metrics"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
   }
 }
