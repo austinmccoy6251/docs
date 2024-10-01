@@ -90,8 +90,7 @@
       "group": "API Reference",
       "pages": [
         "api-reference/introduction",
-        "api-reference/authentication",
-        "api-reference/search-endpoint"
+        "api-reference/endpoint/search"
       ]
     },
     {
