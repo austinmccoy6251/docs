@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Artemis Search",
   "logo": {
-    "dark": "https://search-artemis.s3.amazonaws.com/logo-dark.png",
-    "light": "https://search-artemis.s3.amazonaws.com/logo.png"
+    "dark": "/logo/logo-dark.png",
+    "light": "/logo/logo.png"
   },
   "api": {
     "baseUrl": "https://api.search-artemis.com",
@@ -14,7 +14,7 @@
       "mode": "hide"
     }
   },
-  "favicon": "https://search-artemis.s3.amazonaws.com/spiral.png",
+  "favicon": "/logo/spiral.png",
   "colors": {
     "primary": "#000000",
     "light": "#EBECED",
@@ -51,8 +51,7 @@
       "group": "Get Started",
       "pages": [
         "get-started/quickstart",
-        "get-started/key-concepts",
-        "get-started/authentication"
+        "get-started/key-concepts"
       ]
     },
     {
