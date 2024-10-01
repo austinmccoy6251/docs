@@ -22,23 +22,23 @@ Artemis Search is built on several interconnected components that work together 
         D
       end
       
-      subgraph Dataset .pkl
+      subgraph DatasetPkl[Dataset (.pkl)]
         F[Embeddings]
         G[Tags]
       end
       
-      C --> Dataset .pkl
+      C --> DatasetPkl
       
       H[Playground] -->|Explores| B
       H -->|Uses| K
       H --> I[Search Query]
       I --> J
       D -->|Multiple| J
-      Dataset .pkl --> J
+      DatasetPkl --> J
       
       style H fill:#f9f,stroke:#333,stroke-width:4px
       style E fill:#ff9,stroke:#333,stroke-width:2px
-      style Dataset .pkl fill:#cfe,stroke:#333,stroke-width:2px
+      style DatasetPkl fill:#cfe,stroke:#333,stroke-width:2px
   `}/>
 </Accordion>
 
