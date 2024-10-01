@@ -14,8 +14,6 @@ Artemis Search is built on several interconnected components that work together 
       A --> E[API Key]
       B --> C[Datasets]
       B --> D[Machines]
-      C --> F[Embeddings]
-      C --> G[Tags]
       E --> K[API Integration]
       K --> J[Search Results]
       
@@ -24,14 +22,23 @@ Artemis Search is built on several interconnected components that work together 
         D
       end
       
+      subgraph Dataset .pkl
+        F[Embeddings]
+        G[Tags]
+      end
+      
+      C --> Dataset .pkl
+      
       H[Playground] -->|Explores| B
+      H -->|Uses| K
       H --> I[Search Query]
       I --> J
       D -->|Multiple| J
-      C --> J
+      Dataset .pkl --> J
       
       style H fill:#f9f,stroke:#333,stroke-width:4px
       style E fill:#ff9,stroke:#333,stroke-width:2px
+      style Dataset .pkl fill:#cfe,stroke:#333,stroke-width:2px
   `}/>
 </Accordion>
 
@@ -40,6 +47,8 @@ This diagram illustrates the structure of Artemis Search, highlighting key relat
 1. Multiple machines can be assigned to a single project (shown by the "Multiple" label on the arrow from Machines to Search Results).
 2. API keys are assigned at the organization level, not per project.
 3. The Playground is separate from projects and can be used to explore different projects (indicated by its position outside the project subgraph and its "Explores" relationship to Projects).
+4. Embeddings and Tags are grouped together in a pickled (.pkl) pandas DataFrame, represented by the "Dataset .pkl" subgraph.
+5. The Playground uses the API under the hood for its operations (shown by the "Uses" relationship between Playground and API Integration).
 
 Let's explore each of these components in more detail.
 
@@ -58,7 +67,7 @@ Projects are the highest level of organization in Artemis Search. Each project i
 <Accordion title="What defines a project?">
   A project consists of:
   - A unique name and description
-  - One or more datasets
+  - One or more datasets (each a pickled pandas DataFrame with embeddings and tags)
   - One or more machines
   - Configuration settings (e.g., model type)
 
@@ -70,7 +79,7 @@ Projects are the highest level of organization in Artemis Search. Each project i
 Datasets are the foundation of your searches. They contain the information that Artemis Search will process and query.
 
 <Accordion title="What's in a dataset?">
-  Each dataset is a pickled pandas dataframe with two essential columns:
+  Each dataset is a pickled (.pkl) pandas DataFrame with two essential columns:
   1. `embedding`: Contains OpenAI text-large-3 embeddings of the text you want to search through.
   2. `tag`: Contains string values associated with each embedding, which will be returned as the content associated with each search result.
 
