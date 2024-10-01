@@ -1,0 +1,122 @@
+---
+title: "Interpreting Results"
+description: "Understanding and analyzing search results from Artemis Search"
+---
+
+# Interpreting Results
+
+Artemis Search provides intelligent search results that go beyond simple keyword matching. This guide will help you understand and interpret the search results effectively.
+
+## Result Structure
+
+Each search result in Artemis Search contains the following key components:
+
+<ResponseField name="tag" type="string">
+  The content associated with the matching embedding from your dataset.
+</ResponseField>
+
+<ResponseField name="proba" type="float">
+  The probability (between 0 and 1) that the result matches your search query.
+</ResponseField>
+
+## Understanding Probability Scores
+
+The `proba` value indicates how likely it is that the result matches your search criteria:
+
+<CardGroup cols={2}>
+  <Card title="High Probability (> 0.8)" icon="check-circle">
+    Strong match to your search query. These results are highly relevant.
+  </Card>
+  <Card title="Medium Probability (0.5 - 0.8)" icon="circle-half-stroke">
+    Moderate match. May be relevant but requires closer examination.
+  </Card>
+  <Card title="Low Probability (< 0.5)" icon="circle-exclamation">
+    Weak match. Less likely to be relevant to your search query.
+  </Card>
+</CardGroup>
+
+## Analyzing Search Results
+
+<Steps>
+  <Step title="Review Top Results">
+    Start by examining the results with the highest probability scores. These are most likely to be relevant to your search query.
+  </Step>
+  
+  <Step title="Consider Context">
+    Remember that Artemis Search understands context. A result might not contain exact keywords but could still be highly relevant due to semantic understanding.
+  </Step>
+  
+  <Step title="Examine Tags">
+    The `tag` field contains the actual content associated with the result. Analyze this to understand why it was returned for your query.
+  </Step>
+  
+  <Step title="Adjust Parameters">
+    If you're not getting the expected results, consider adjusting your [search parameters](/search/search-parameters) such as the probability threshold or synthetic dataset size.
+  </Step>
+</Steps>
+
+## Example Interpretation
+
+<CodeGroup>
+
+```json
+{
+  "results": [
+    {
+      "tag": "HealthTech Inc: A leading provider of HIPAA-compliant healthcare software solutions.",
+      "proba": 0.95
+    },
+    {
+      "tag": "SecureData Systems: Offers data protection services for various industries.",
+      "proba": 0.72
+    },
+    {
+      "tag": "MediCare Innovations: Developing new medical devices for hospitals.",
+      "proba": 0.45
+    }
+  ]
+}
+```
+
+</CodeGroup>
+
+In this example:
+1. "HealthTech Inc" is highly relevant (0.95 probability) and explicitly mentions HIPAA compliance.
+2. "SecureData Systems" is moderately relevant (0.72 probability). While not specifically mentioning HIPAA, it's in a related field.
+3. "MediCare Innovations" has a lower relevance (0.45 probability). It's in the medical field but doesn't indicate HIPAA compliance.
+
+## Visualizing Results
+
+<Note>
+  The following is a placeholder for a data visualization component. In a real implementation, this would be a dynamic chart based on actual search results.
+</Note>
+
+```jsx
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+const data = [
+  { name: 'HealthTech Inc', probability: 0.95 },
+  { name: 'SecureData Systems', probability: 0.72 },
+  { name: 'MediCare Innovations', probability: 0.45 },
+];
+
+const ResultChart = () => (
+  <ResponsiveContainer width="100%" height={300}>
+    <BarChart data={data}>
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="probability" fill="#0D9373" />
+    </BarChart>
+  </ResponsiveContainer>
+);
+
+export default ResultChart;
+```
+
+## Next Steps
+
+- Learn how to [refine your search queries](/search/refining-queries)
+- Explore [advanced search techniques](/search/advanced-techniques)
+- Understand how to [integrate search results](/integrations/overview) into your applications

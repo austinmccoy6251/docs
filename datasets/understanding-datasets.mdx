@@ -1,0 +1,55 @@
+---
+title: "Understanding Datasets"
+description: "Learn about datasets in Artemis Search and how they power intelligent searches"
+---
+
+Datasets are at the core of Artemis Search's intelligent search technology. They consist of embeddings and associated tags, enabling our advanced search capabilities that excel at "reasoning" and outperform traditional RAG systems.
+
+## What is a Dataset?
+
+A dataset in Artemis Search is a collection of:
+
+1. **Embeddings**: Vector representations of text data
+2. **Tags**: Associated string values that provide context or metadata for each embedding
+
+<Note>
+  Each dataset must be a pickled pandas dataframe with an "embedding" column containing OpenAI text-large-3 embeddings and a "tag" column with associated string values.
+</Note>
+
+## Key Concepts
+
+<CardGroup cols={2}>
+  <Card title="Embeddings" icon="vector-square">
+    Vector representations of text, allowing for semantic similarity comparisons.
+  </Card>
+  <Card title="Tags" icon="tag">
+    Metadata associated with each embedding, returned as content in search results.
+  </Card>
+  <Card title="Intelligent Search" icon="magnifying-glass-chart">
+    Our technology performs searches requiring "reasoning" beyond simple keyword matching.
+  </Card>
+  <Card title="Project Association" icon="folder-tree">
+    Datasets are linked to specific projects for organized search tasks.
+  </Card>
+</CardGroup>
+
+## Dataset Activation
+
+Within a project, you can have multiple datasets, but only one can be active at a time. The active dataset is the one used for search queries in that project.
+
+<Warning>
+  At least one dataset must be active for a project to be operational and allow searches.
+</Warning>
+
+## Next Steps
+
+Now that you understand the basics of datasets in Artemis Search, learn how to:
+
+<CardGroup cols={2}>
+  <Card title="Upload a Dataset" icon="upload" href="/upload-a-dataset">
+    Add your own data to Artemis Search
+  </Card>
+  <Card title="Manage Datasets" icon="list-check" href="/manage-datasets">
+    View, activate, edit, and delete your datasets
+  </Card>
+</CardGroup>

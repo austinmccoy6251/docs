@@ -1,0 +1,82 @@
+---
+title: "Search Parameters"
+description: "Understanding and configuring search parameters in Artemis Search"
+---
+
+# Search Parameters
+
+Artemis Search offers several parameters to fine-tune your search queries and results. This guide explains each parameter and how to use them effectively.
+
+## Available Parameters
+
+<ParamField query="search_query" type="string" required>
+  The main search query string.
+</ParamField>
+
+<ParamField query="num_batches" type="integer" default="1">
+  The number of synthetic data batches to generate for the search.
+</ParamField>
+
+<ParamField query="clear_flag" type="boolean" default="false">
+  Whether to clear previous search context.
+</ParamField>
+
+<ParamField query="top_k" type="integer" default="10">
+  The maximum number of results to return.
+</ParamField>
+
+## Configuring Parameters in the Playground
+
+<Steps>
+  <Step title="Synthetic Dataset Size">
+    Adjust the 'Synthetic Dataset Size' input to control how much synthetic data is used for each search request. This correlates to the `num_batches` parameter.
+  </Step>
+
+  <Step title="Proba Threshold">
+    Set the 'Proba Threshold' to filter and keep only results above a certain probability. This helps in refining the quality of your search results.
+  </Step>
+
+  <Step title="Top K Threshold">
+    Use the 'Top K Threshold' to limit the number of results returned. This corresponds to the `top_k` parameter.
+  </Step>
+</Steps>
+
+## Using Parameters in API Requests
+
+When making API requests, you can include these parameters in your query string:
+
+<CodeGroup>
+
+```bash
+curl -X GET "https://api.search-artemis.com/search?search_query=HIPAA%20compliant%20companies&num_batches=2&clear_flag=true&top_k=5" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```python
+import requests
+
+url = "https://api.search-artemis.com/search"
+params = {
+    "search_query": "HIPAA compliant companies",
+    "num_batches": 2,
+    "clear_flag": True,
+    "top_k": 5
+}
+headers = {
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.get(url, params=params, headers=headers)
+```
+
+</CodeGroup>
+
+<Note>
+  Remember to replace `YOUR_API_KEY` with your actual Artemis Search API key.
+</Note>
+
+## Best Practices
+
+- Start with a larger `top_k` value and gradually decrease it as you refine your search.
+- Use `clear_flag=true` when starting a new search context to avoid interference from previous queries.
+- Experiment with different `num_batches` values to balance between search depth and response time.

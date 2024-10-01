@@ -1,0 +1,69 @@
+---
+title: "Upload a Dataset"
+description: "Learn how to add your own dataset to Artemis Search"
+---
+
+Uploading a dataset is a crucial step in leveraging Artemis Search's intelligent search capabilities for your specific use case. This guide will walk you through the process of adding a new dataset to your project.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+1. An active Artemis Search account
+2. A project created in your dashboard
+3. A prepared dataset in the correct format (pickled pandas dataframe)
+
+## Dataset Format Requirements
+
+Your dataset must meet the following criteria:
+
+<Card title="Dataset Format" icon="table">
+  - File type: Pickled pandas dataframe
+  - Required columns:
+    - `embedding`: OpenAI text-large-3 embeddings of text you want to search through
+    - `tag`: String values associated with each embedding
+</Card>
+
+## Upload Process
+
+Follow these steps to upload your dataset:
+
+<Steps>
+  <Step title="Navigate to Your Project">
+    Go to the Artemis Search dashboard and select the project you want to add the dataset to.
+  </Step>
+  <Step title="Open the Datasets Card">
+    Locate the "Datasets" card on your project page.
+  </Step>
+  <Step title="Initiate Upload">
+    Click the "Add Dataset" button at the bottom of the datasets table.
+  </Step>
+  <Step title="Provide Dataset Details">
+    In the popup modal:
+    1. Enter a name for your dataset
+    2. Click the upload area to select your pickled pandas dataframe file
+  </Step>
+  <Step title="Confirm and Wait">
+    Click "Upload" and wait for the process to complete. Do not navigate away from the page during this time.
+  </Step>
+</Steps>
+
+<Warning>
+  The upload process may take some time depending on the size of your dataset. Ensure you stay on the page until the upload is complete.
+</Warning>
+
+## After Upload
+
+Once your dataset is successfully uploaded:
+
+1. It will appear in the datasets table on your project page.
+2. You can choose to activate it for use in searches.
+3. The dataset becomes available for management actions like editing or deleting.
+
+## Next Steps
+
+Now that you've uploaded your dataset, learn how to:
+
+<Card title="Manage Datasets" icon="list-check" href="/manage-datasets">
+  Activate, edit, or delete your uploaded datasets
+</Card>

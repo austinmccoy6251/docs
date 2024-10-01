@@ -1,0 +1,65 @@
+---
+title: "Understanding Machines"
+description: "Learn about machines in Artemis Search and how they power your intelligent searches"
+---
+
+Machines are a core component of Artemis Search's technology, enabling high-performance, intelligent searches on your datasets. This page will help you understand what machines are, how they work, and why they're crucial for your search projects.
+
+## What are Machines?
+
+<Note>
+Machines in Artemis Search are computational resources dedicated to running our advanced ML model on your active datasets.
+</Note>
+
+Machines are responsible for processing search requests and performing the "intelligent" searches that set Artemis Search apart from traditional search engines and RAG systems.
+
+## Key Concepts
+
+<AccordionGroup>
+  <Accordion title="Purpose" icon="bullseye">
+    Machines run our ML model to perform reasoning-based searches on your datasets, allowing for more accurate and context-aware results.
+  </Accordion>
+  <Accordion title="Scalability" icon="arrows-scale">
+    You can add multiple machines to a project to handle increased load and improve response times.
+  </Accordion>
+  <Accordion title="Load Balancing" icon="balance-scale">
+    Search requests are automatically distributed among available machines to optimize performance.
+  </Accordion>
+  <Accordion title="Project Activation" icon="power-off">
+    At least one machine must be assigned to a project for it to be considered "active" and ready for use.
+  </Accordion>
+</AccordionGroup>
+
+## Machine States
+
+Machines in Artemis Search can be in different states:
+
+<CardGroup cols={2}>
+  <Card title="Starting" icon="rocket">
+    The machine is being initialized and prepared for use.
+  </Card>
+  <Card title="Running" icon="play">
+    The machine is active and ready to process search requests.
+  </Card>
+  <Card title="Stopping" icon="stop">
+    The machine is in the process of being shut down.
+  </Card>
+  <Card title="Stopped" icon="power-off">
+    The machine is not running and cannot process requests.
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+To get the most out of your machines in Artemis Search:
+
+1. Start with at least one machine per project to ensure it's active.
+2. Monitor your project's performance and add machines as needed to handle increased load.
+3. Consider removing unnecessary machines to optimize costs when demand is lower.
+4. Regularly check the status of your machines in the project dashboard.
+
+<Tip>
+Remember, you need both an active dataset and at least one machine assigned to a project for it to be operational in the playground.
+</Tip>
+
+In the next section, we'll walk you through the process of [adding a machine](/machines/add-a-machine) to your project.

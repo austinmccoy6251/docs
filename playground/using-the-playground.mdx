@@ -1,0 +1,73 @@
+---
+title: "Using the Playground"
+description: "Learn how to use the Artemis Search Playground to experiment with your search queries"
+---
+
+The Artemis Search Playground is a powerful tool that allows you to experiment with your search queries in real-time. This guide will walk you through the basics of using the Playground effectively.
+
+## Accessing the Playground
+
+To access the Playground:
+
+<Steps>
+  <Step title="Navigate to your project">
+    Log in to your Artemis Search account and select the project you want to work with.
+  </Step>
+  <Step title="Open the Playground">
+    Click on the "Open in Playground" button in the top-right corner of your project page.
+  </Step>
+</Steps>
+
+## Playground Layout
+
+The Playground is divided into two main sections:
+
+<Card title="Left Column: Settings and Search" icon="sliders">
+  Configure your search parameters and enter your search query.
+</Card>
+
+<Card title="Right Column: Results" icon="table">
+  View the paginated table of search results returned from your query.
+</Card>
+
+## Configuring Your Search
+
+<AccordionGroup>
+  <Accordion title="Project Selection" icon="project-diagram">
+    Use the 'Project' dropdown to select the activated project you want to experiment with.
+  </Accordion>
+  
+  <Accordion title="Synthetic Dataset Size" icon="database">
+    Adjust the 'Synthetic Dataset Size' input to control how much synthetic data is used for each search request. Our model generates this data to train on when searching.
+  </Accordion>
+  
+  <Accordion title="Probability Threshold" icon="percentage">
+    Set the 'Proba Threshold' to filter and keep only results above the specified probability. This reflects the likelihood that a result matches your search.
+  </Accordion>
+  
+  <Accordion title="Top K Threshold" icon="sort-amount-down">
+    Use the 'Top K Threshold' to filter and keep only the top-k results.
+  </Accordion>
+</AccordionGroup>
+
+## Running a Search
+
+<Steps>
+  <Step title="Enter your query">
+    In the 'Search Query' text area, enter the search query you want to test.
+  </Step>
+  <Step title="Execute the search">
+    Click the 'Complete Search' button to run your search.
+  </Step>
+  <Step title="Review results">
+    Examine the paginated table of search results on the right side of the Playground. Each result displays the 'tag' and 'proba' (probability) associated with the search results.
+  </Step>
+</Steps>
+
+<Tip>
+  Experiment with different queries and settings to fine-tune your search results and understand how Artemis Search's intelligent search technology works with your data.
+</Tip>
+
+## Next Steps
+
+Now that you're familiar with the Playground basics, learn how to [experiment with different types of searches](/playground/experimenting-with-searches) to get the most out of Artemis Search.

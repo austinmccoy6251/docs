@@ -1,0 +1,67 @@
+---
+title: "Performing a Search"
+description: "Learn how to execute a search query using Artemis Search"
+---
+
+# Performing a Search
+
+Artemis Search provides a powerful and intuitive interface for performing intelligent searches on your datasets. This guide will walk you through the process of executing a search query.
+
+## Prerequisites
+
+Before you begin, ensure that:
+- You have [created a project](/projects/create-a-project) in Artemis Search
+- You have [uploaded and activated a dataset](/datasets/upload-and-activate) for your project
+- Your project is in an "active" state with at least one machine assigned
+
+## Steps to Perform a Search
+
+<Steps>
+  <Step title="Access the Playground">
+    Navigate to the Playground by clicking on your active project from the dashboard.
+  </Step>
+
+  <Step title="Configure Search Settings">
+    In the left column of the Playground, under the 'Settings' section:
+    1. Select your desired project from the 'Project' dropdown
+    2. Adjust the 'Synthetic Dataset Size' as needed
+    3. Set the 'Proba Threshold' to filter results
+    4. Define the 'Top K Threshold' to limit the number of results
+  </Step>
+
+  <Step title="Enter Your Search Query">
+    In the 'Search' box on the left side:
+    1. Type your search query in the 'Search Query' text area
+    2. Click the 'Complete Search' button to execute the search
+  </Step>
+
+  <Step title="View Results">
+    The search results will appear in the 'Search Results' table on the right side of the Playground. Each result displays the associated tag and probability.
+  </Step>
+</Steps>
+
+## Example Search
+
+<CodeGroup>
+
+```javascript
+// Example search query
+const searchQuery = "companies that require HIPAA compliance";
+```
+
+```python
+# Example search query
+search_query = "companies that require HIPAA compliance"
+```
+
+</CodeGroup>
+
+<Note>
+  Artemis Search excels at queries requiring reasoning. For example, instead of just finding companies related to medicine or HIPAA compliance, it will return companies that actually match the criteria of requiring HIPAA compliance.
+</Note>
+
+## Next Steps
+
+- Learn more about [search parameters](/search/search-parameters)
+- Understand how to [interpret search results](/search/interpreting-results)
+- Explore [advanced search techniques](/search/advanced-techniques)

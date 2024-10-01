@@ -1,0 +1,103 @@
+---
+title: "Experimenting with Searches"
+description: "Learn how to craft effective search queries and interpret results in the Artemis Search Playground"
+---
+
+Artemis Search's intelligent search technology allows you to perform complex, reasoning-based searches on your datasets. This guide will help you experiment with different types of searches and interpret the results effectively.
+
+## Types of Searches
+
+<AccordionGroup>
+  <Accordion title="Simple Keyword Search" icon="search">
+    Start with basic keyword searches to familiarize yourself with the system.
+    
+    Example: "artificial intelligence"
+  </Accordion>
+  
+  <Accordion title="Phrase Search" icon="quote-right">
+    Use quotes to search for exact phrases.
+    
+    Example: "machine learning applications in healthcare"
+  </Accordion>
+  
+  <Accordion title="Conceptual Search" icon="brain">
+    Leverage Artemis Search's reasoning capabilities to find results based on concepts rather than just keywords.
+    
+    Example: "companies working on sustainable energy solutions"
+  </Accordion>
+  
+  <Accordion title="Attribute-based Search" icon="tags">
+    Search for entities with specific attributes or characteristics.
+    
+    Example: "startups with female founders in the fintech industry"
+  </Accordion>
+</AccordionGroup>
+
+## Crafting Effective Queries
+
+To get the most out of Artemis Search, consider the following tips when crafting your queries:
+
+<Card title="Be Specific" icon="bullseye">
+  The more specific your query, the more targeted your results will be. Instead of "tech companies," try "AI-powered cybersecurity startups founded after 2020."
+</Card>
+
+<Card title="Use Natural Language" icon="comment-alt">
+  Artemis Search understands context, so phrase your queries as you would a question to a human expert.
+</Card>
+
+<Card title="Combine Concepts" icon="object-group">
+  Don't hesitate to combine multiple concepts in a single query, such as "environmentally friendly manufacturing techniques in the automotive industry."
+</Card>
+
+## Interpreting Results
+
+When you run a search in the Playground, you'll see a table of results. Here's how to interpret them:
+
+<ResponseField name="tag" type="string">
+  The content associated with the matching embedding from your dataset.
+</ResponseField>
+
+<ResponseField name="proba" type="float">
+  The probability (between 0 and 1) that the result matches your search query. Higher values indicate a stronger match.
+</ResponseField>
+
+<Tip>
+  Pay attention to the 'proba' values to gauge the relevance of each result. You can adjust the 'Proba Threshold' in the Playground settings to filter out lower-probability matches.
+</Tip>
+
+## Example Searches
+
+Let's walk through some example searches to demonstrate Artemis Search's capabilities:
+
+<CodeGroup>
+
+```plaintext Search: Companies that require HIPAA compliance
+This search will return companies in industries that typically need to comply with HIPAA regulations, such as healthcare providers, insurance companies, and health tech startups.
+```
+
+```plaintext Search: Sustainable fashion brands using recycled materials
+This query will find fashion companies that prioritize sustainability and specifically use recycled materials in their products.
+```
+
+```plaintext Search: AI startups focused on natural language processing
+This search targets AI companies specializing in NLP technologies, which could include chatbots, translation services, or text analysis tools.
+```
+
+</CodeGroup>
+
+## Refining Your Searches
+
+If you're not getting the results you expect, try these refinement techniques:
+
+1. **Adjust specificity**: Make your query more or less specific to broaden or narrow the results.
+2. **Use synonyms**: Try alternative words or phrases that express the same concept.
+3. **Combine searches**: Use multiple related searches to cross-reference results.
+4. **Tweak parameters**: Experiment with different Synthetic Dataset Sizes and Probability Thresholds.
+
+<Check>
+  Remember, the power of Artemis Search lies in its ability to understand context and concepts. Don't be afraid to phrase your queries in a natural, detailed manner to get the most relevant results.
+</Check>
+
+## Next Steps
+
+Now that you're familiar with experimenting in the Playground, consider integrating Artemis Search into your applications using our [API](/api-reference/introduction). This will allow you to harness the power of intelligent search directly in your products or services.
