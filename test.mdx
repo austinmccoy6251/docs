@@ -1,0 +1,120 @@
+---
+title: "Quickstart"
+description: "Get started with our intelligent search technology in minutes"
+---
+
+Our technology allows you to perform "intelligent" searches on datasets consisting of embeddings and associated tags. This search is designed to excel at searches that require "reasoning" and outperforms RAG. For example, if you search "companies that require HIPAA compliance", our technology will truly return companies that match this criteria.
+
+<Note>
+  To get started right away, use our interactive [Intelligent Search Playground](#) (coming soon).
+</Note>
+
+## 1. Get an API key
+
+You need an API key to make calls to your project. Connect with us to generate a key:
+
+<Card title="Generate API Key" icon="key" href="#">
+  Click here to generate your API key
+</Card>
+
+Copy your generated key:
+
+```bash
+SEARCH_API_KEY="YOUR_API_KEY"
+```
+
+Alternatively, you can [create a new API key](#) in your account settings.
+
+## 2. Install the SDK
+
+Our SDK provides a simple interface for interacting with your intelligent search database. Install it using pip:
+
+```bash
+pip install intelligent-search-sdk
+```
+
+## 3. Initialize a client
+
+Initialize a client with your API key:
+
+```python
+from intelligent_search import SearchClient
+
+client = SearchClient(api_key="YOUR_API_KEY")
+```
+
+## 4. Create a project
+
+Create a project to organize your searches:
+
+```python
+project = client.create_project(
+    name="example-project",
+    description="A project for searching company data",
+    model_type="Mini"
+)
+```
+
+## 5. Add a dataset
+
+Add a dataset to your project. Each dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a "tag" column (containing associated string values).
+
+```python
+import pandas as pd
+
+# Assuming you have a pickled dataframe named 'company_data.pkl'
+dataset = pd.read_pickle("company_data.pkl")
+project.add_dataset(name="company_dataset", data=dataset)
+```
+
+## 6. Activate the dataset
+
+Activate your dataset to make it searchable:
+
+```python
+project.activate_dataset("company_dataset")
+```
+
+## 7. Add a machine
+
+Add a machine to process search requests:
+
+```python
+project.add_machine()
+```
+
+## 8. Run a similarity search
+
+Now you're ready to perform an intelligent search:
+
+```python
+results = project.search(
+    query="companies that require HIPAA compliance",
+    top_k=5,
+    prob_threshold=0.7
+)
+
+for result in results:
+    print(f"Company: {result.tag}, Probability: {result.prob}")
+```
+
+## Next steps
+
+Congratulations! You've set up your first intelligent search project. Here are some next steps to explore:
+
+<CardGroup cols={2}>
+  <Card title="Explore the Playground" icon="gamepad-modern" href="#">
+    Experiment with different searches in our interactive playground.
+  </Card>
+  <Card title="API Reference" icon="book-open-cover" href="#">
+    Dive into our comprehensive API documentation.
+  </Card>
+  <Card title="Best Practices" icon="stars" href="#">
+    Learn how to optimize your searches and manage costs.
+  </Card>
+  <Card title="Advanced Topics" icon="graduation-cap" href="#">
+    Explore advanced features like custom embeddings and multi-project setups.
+  </Card>
+</CardGroup>
+```
+
