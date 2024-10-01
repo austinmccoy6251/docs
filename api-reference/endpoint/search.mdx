@@ -1,0 +1,106 @@
+---
+title: 'Get Plants'
+openapi: 'GET /plants'
+---
+---
+title: 'Search API'
+openapi: 'GET /search'
+description: 'Perform an intelligent search on your dataset'
+---
+
+# Search
+
+The Search API allows you to perform intelligent searches on your dataset. It excels at searches that require "reasoning" and can return highly relevant results based on complex queries.
+
+## Search Request
+
+<ParamField query="search_query" type="string" required>
+  The search query string. For example, "companies that require HIPAA compliance"
+</ParamField>
+
+<ParamField query="num_batches" type="integer" default="1">
+  The number of batches of synthetic data to generate for the search. Increasing this may improve search quality but will increase response time.
+</ParamField>
+
+<ParamField query="clear_flag" type="boolean" default="false">
+  If set to true, clears any cached results for this query.
+</ParamField>
+
+<ParamField query="top_k" type="integer" default="10">
+  The maximum number of results to return.
+</ParamField>
+
+## Search Response
+
+<ResponseField name="results" type="array">
+  <Expandable title="properties">
+    <ResponseField name="tag" type="string">
+      The tag associated with the matching embedding.
+    </ResponseField>
+    <ResponseField name="proba" type="number">
+      The probability that the result matches the search query, ranging from 0 to 1.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<RequestExample>
+```bash Example Request
+curl --request GET \
+  --url 'https://api.search-artemis.com/v1/search?search_query=companies%20that%20require%20HIPAA%20compliance&num_batches=2&top_k=5' \
+  --header 'Authorization: Bearer YOUR_API_KEY'
+```
+</RequestExample>
+
+<ResponseExample>
+```json Response
+{
+  "results": [
+    {
+      "tag": "Acme Healthcare Solutions",
+      "proba": 0.95
+    },
+    {
+      "tag": "MediSecure Data Systems",
+      "proba": 0.92
+    },
+    {
+      "tag": "HealthGuard Technologies",
+      "proba": 0.89
+    },
+    {
+      "tag": "PatientPrivacy Inc.",
+      "proba": 0.87
+    },
+    {
+      "tag": "Compliance Med",
+      "proba": 0.85
+    }
+  ]
+}
+```
+</ResponseExample>
+
+## Error Responses
+
+<ResponseField name="error" type="object">
+  <Expandable title="properties">
+    <ResponseField name="code" type="string">
+      An error code indicating the type of error that occurred.
+    </ResponseField>
+    <ResponseField name="message" type="string">
+      A human-readable description of the error.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseExample>
+```json Error Response
+{
+  "error": {
+    "code": "invalid_parameter",
+    "message": "The 'search_query' parameter is required."
+  }
+}
+```
+</ResponseExample>
+```
