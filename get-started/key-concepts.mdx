@@ -9,13 +9,10 @@ Artemis Search is built on several interconnected components that work together 
 
 <Accordion title="Artemis Search Component Relationship">
   <Mermaid chart={`
-    graph TD
+   graph TD
       A[Organization] --> B[Projects]
-      A --> E[API Key]
       B --> C[Datasets]
-      B --> D[Machines]
-      E --> K[API Integration]
-      K --> J[Search Results]
+      B -->|Has Multiple| D[Machines]
       
       subgraph Project
         C
@@ -23,20 +20,12 @@ Artemis Search is built on several interconnected components that work together 
       end
       
       subgraph DatasetPkl[Dataset pkl]
-        F[Embeddings]
-        G[Tags]
+        E[Embeddings]
+        F[Tags]
       end
       
-      C --> DatasetPkl
+      C --> |Has One Active | DatasetPkl
       
-      H[Playground] -->|Explores| B
-      H -->|Uses| K
-      H --> I[Search Query]
-      I --> J
-      D -->|Multiple| J
-      DatasetPkl --> J
-      
-      style H fill:#f9f,stroke:#333,stroke-width:4px
       style E fill:#ff9,stroke:#333,stroke-width:2px
       style DatasetPkl fill:#cfe,stroke:#333,stroke-width:2px
   `}/>
@@ -44,11 +33,10 @@ Artemis Search is built on several interconnected components that work together 
 
 This diagram illustrates the structure of Artemis Search, highlighting key relationships:
 
-1. Multiple machines can be assigned to a single project (shown by the "Multiple" label on the arrow from Machines to Search Results).
-2. API keys are assigned at the organization level, not per project.
-3. The Playground is separate from projects and can be used to explore different projects (indicated by its position outside the project subgraph and its "Explores" relationship to Projects).
-4. Embeddings and Tags are grouped together in a pickled (.pkl) pandas DataFrame, represented by the "Dataset .pkl" subgraph.
-5. The Playground uses the API under the hood for its operations (shown by the "Uses" relationship between Playground and API Integration).
+1. Organizations consist of projects.
+2. Each project serves a particular search task. Each project may have multiple datasets but only one can be active at a time. Further, each project has dedicated machines to process search requests.
+3. Datasets are two-column pickled Pandas dataframes with two columns (`embedding` and `tags`), and only one at a time may be activated.
+4. Machines are cloud servers which process the search requests on the active dataset. These are automatically load balanced.
 
 Let's explore each of these components in more detail.
 
@@ -99,7 +87,7 @@ Machines are the computational resources that power your searches.
 
 ## Playground
 
-The playground is where you can experiment with and fine-tune your searches.
+The playground is where you can experiment with and fine-tune your searches. Under the hood, it uses the API to perform searches.
 
 <Accordion title="What can you do in the playground?">
   In the playground, you can:
@@ -124,7 +112,7 @@ The playground is where you can experiment with and fine-tune your searches.
 Artemis Search provides a RESTful API for seamless integration with your applications.
 
 <Accordion title="How to use the API?">
-  - Each project has its own API key for authentication.
+  - Each organization has its own API key for authentication.
   - The main endpoint is `/search`, which accepts parameters like `search_query`, `num_batches`, `clear_flag`, and `top_k`.
   - API requests must include your API token in the Authorization header.
 
