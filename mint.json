@@ -1,57 +1,57 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Artemis Search",
-  "logo": {
-    "dark": "/logo/logo-dark.png",
-    "light": "/logo/logo.png",
-    "href": "https://search-artemis.com"
-  },
-  "api": {
-    "baseUrl": "https://api.search-artemis.com",
-    "auth": {
-      "method": "bearer"
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "Artemis Search",
+    "logo": {
+        "dark": "/logo/logo-dark.png",
+        "light": "/logo/logo.png",
+        "href": "https://search-artemis.com"
     },
-    "playground": {
-      "mode": "hide"
-    }
-  },
-  "favicon": "/images/favicon.png",
-  "colors": {
-    "primary": "#000000",
-    "light": "#EBECED",
-    "dark": "#0A0C10",
-    "background": {
-      "dark": "#000000"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Book a Meeting",
-      "url": "https://cal.com/austin-mccoy-tlusdm/learn-about-artemis-search"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://app.search-artemis.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Website",
-      "icon": "globe",
-      "url": "https://search-artemis.com"
+    "api": {
+        "baseUrl": "https://api.search-artemis.com",
+        "auth": {
+            "method": "bearer"
+        },
+        "playground": {
+            "mode": "hide"
+        }
     },
-    {
-        "name": "Demo",
-        "icon": "bolt-lightning",
-        "url": "https://api.search-artemis.com/demo"
-    }
-  ],
+    "favicon": "/images/favicon.png",
+    "colors": {
+        "primary": "#000000",
+        "light": "#EBECED",
+        "dark": "#0A0C10",
+        "background": {
+            "dark": "#000000"
+        }
+    },
+    "topbarLinks": [
+        {
+            "name": "Book a Meeting",
+            "url": "https://cal.com/austin-mccoy-tlusdm/learn-about-artemis-search"
+        }
+    ],
+    "topbarCtaButton": {
+        "name": "Dashboard",
+        "url": "https://app.search-artemis.com"
+    },
+    "tabs": [
+        {
+            "name": "API Reference",
+            "url": "api-reference"
+        }
+    ],
+    "anchors": [
+        {
+            "name": "Website",
+            "icon": "globe",
+            "url": "https://search-artemis.com"
+        },
+        {
+            "name": "Demo",
+            "icon": "bolt-lightning",
+            "url": "https://app.search-artemis.com/demo"
+        }
+    ],
     "navigation": [
         {
             "group": "Get Started",
