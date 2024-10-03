@@ -6,6 +6,11 @@
         "light": "/logo/logo.png",
         "href": "https://search-artemis.com"
     },
+    "analytics": {
+    "ga4": {
+        "measurementId": "G-WFY472T4TV"
+    }
+    },
     "api": {
         "baseUrl": "https://api.search-artemis.com",
         "auth": {
