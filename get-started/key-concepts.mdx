@@ -8,30 +8,9 @@ description: 'Understanding the core components of Artemis Search'
 Artemis Search is built on several interconnected components that work together to provide powerful, reasoning-based searches. The following diagram illustrates how these components relate to each other:
 
 <Accordion title="Artemis Search Component Relationship">
-  <Mermaid
-  chart={`
-    graph TD
-      A[Organization] --> B[Projects]
-      B --> C[Datasets]
-      B -->|Has Multiple| D[Machines]
-      
-      subgraph Project
-        C
-        D
-      end
-      
-      subgraph DatasetPkl["Dataset pkl"]
-        E[Embeddings]
-        F[Tags]
-      end
-      
-      C --> |Has One Active| E
-      C --> F
-      
-      style E fill:#cfe,stroke:#333,stroke-width:2px
-      style F fill:#cfe,stroke:#333,stroke-width:2px
-  `}
- />
+ <Frame width="100%" height="100%">
+  <img src="/images/component-relationship.png" alt="Artemis Search Components" />
+ </Frame>
 </Accordion>
 
 This diagram illustrates the structure of Artemis Search, highlighting key relationships:
