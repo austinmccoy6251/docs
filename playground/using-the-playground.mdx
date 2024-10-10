@@ -1,9 +1,10 @@
 ---
 title: "Using the Playground"
-description: "Learn how to use the Artemis Search Playground to experiment with your search queries"
+description: "Learn how to use the Artemis Search Playground to experiment with your projects"
 ---
 
-The Artemis Search Playground is a powerful tool that allows you to experiment with your search queries in real-time. This guide will walk you through the basics of using the Playground effectively.
+## What is the Playground?
+The Artemis Search Playground is a powerful tool that allows you to experiment with your projects.
 
 ## Accessing the Playground
 
@@ -40,15 +41,15 @@ The Playground is divided into two main sections:
   </Accordion>
   
   <Accordion title="Synthetic Dataset Size" >
-    Adjust the 'Synthetic Dataset Size' input to control how much synthetic data is used for each search request. Our model generates this data to train on when searching.
+    Adjust the 'Synthetic Dataset Size' input to control how much synthetic data is used for each search request. Our model generates this data to train on when searching. This parameter can range from 1 to 70. Tuning this parameter allows you to balance search speed and result quality for your use case.
   </Accordion>
   
   <Accordion title="Probability Threshold" >
-    Set the 'Proba Threshold' to filter and keep only results above the specified probability. This reflects the likelihood that a result matches your search.
+    Set the 'Proba Threshold' to filter and keep only results above the specified probability. This reflects the likelihood that a result matches your search. This parameter can range from 0 to 1. Tuning this parameter will truncate results but not affect search time.
   </Accordion>
   
   <Accordion title="Top K Threshold" >
-    Use the 'Top K Threshold' to filter and keep only the top-k results.
+    Use the 'Top K Threshold' to filter and keep only the top-k results. This value can range from 1 to Infinity. Tuning this parameter will truncate results but not affect search time.
   </Accordion>
 </AccordionGroup>
 
@@ -60,15 +61,16 @@ The Playground is divided into two main sections:
   </Step>
   <Step title="Execute the search">
     Click the 'Complete Search' button to run your search.
+
+    <Tip>
+      The search will take between 5-20 seconds to complete. If this is your first time running a search, it may take longer as your machines are spun up.
+    </Tip>
   </Step>
   <Step title="Review results">
     Examine the paginated table of search results on the right side of the Playground. Each result displays the 'tag' and 'proba' (probability) associated with the search results.
   </Step>
 </Steps>
 
-<Tip>
-  Experiment with different queries and settings to fine-tune your search results and understand how Artemis Search's intelligent search technology works with your data.
-</Tip>
 
 ## Next Steps
 

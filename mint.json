@@ -7,9 +7,9 @@
         "href": "https://search-artemis.com"
     },
     "analytics": {
-    "ga4": {
-        "measurementId": "G-WFY472T4TV"
-    }
+        "ga4": {
+            "measurementId": "G-WFY472T4TV"
+        }
     },
     "api": {
         "baseUrl": "https://api.search-artemis.com",
@@ -60,43 +60,76 @@
     "navigation": [
         {
             "group": "Get Started",
-            "pages": ["get-started/quickstart", "get-started/key-concepts"]
+            "pages": [
+                "get-started/quickstart",
+                "get-started/key-concepts"
+            ]
         },
         {
             "group": "Projects",
-            "pages": ["projects/understanding-projects", "projects/create-a-project", "projects/manage-projects"]
+            "pages": [
+                "projects/understanding-projects",
+                "projects/create-a-project",
+                "projects/manage-projects"
+            ]
         },
         {
             "group": "Datasets",
-            "pages": ["datasets/understanding-datasets", "datasets/upload-a-dataset", "datasets/manage-datasets"]
+            "pages": [
+                "datasets/understanding-datasets",
+                "datasets/create-a-dataset",
+                "datasets/manage-datasets"
+            ]
         },
         {
             "group": "Machines",
-            "pages": ["machines/understanding-machines", "machines/create-a-machine", "machines/manage-machines"]
+            "pages": [
+                "machines/understanding-machines",
+                "machines/create-a-machine",
+                "machines/manage-machines"
+            ]
         },
         {
             "group": "Search",
-            "pages": ["search/performing-a-search", "search/search-parameters", "search/interpreting-results"]
+            "pages": [
+                "search/performing-a-search",
+                "search/search-parameters",
+                "search/interpreting-results"
+            ]
         },
         {
             "group": "Playground",
-            "pages": ["playground/using-the-playground", "playground/experimenting-with-searches"]
+            "pages": [
+                "playground/using-the-playground",
+                "playground/experimenting-with-searches"
+            ]
         },
         {
             "group": "API Reference",
-            "pages": ["api-reference/introduction", "api-reference/endpoint/search"]
+            "pages": [
+                "api-reference/introduction",
+                "api-reference/endpoint/search"
+            ]
         },
         {
             "group": "Organizations and Teams",
-            "pages": ["organizations-and-teams/managing-organizations", "organizations-and-teams/team-management"]
+            "pages": [
+                "organizations-and-teams/managing-organizations",
+                "organizations-and-teams/team-management"
+            ]
         },
         {
             "group": "Settings",
-            "pages": ["settings/account-settings", "settings/api-keys"]
+            "pages": [
+                "settings/account-settings",
+                "settings/api-keys"
+            ]
         },
         {
             "group": "Billing and Usage",
-            "pages": ["billing-and-usage/understanding-billing"]
+            "pages": [
+                "billing-and-usage/understanding-billing"
+            ]
         }
     ],
     "footerSocials": {}

@@ -44,14 +44,14 @@ When making API requests, you can include these parameters in your query string:
 <CodeGroup>
 
 ```bash
-curl -X GET "https://api.search-artemis.com/search?search_query=HIPAA%20compliant%20companies&num_batches=2&clear_flag=true&top_k=5" \
+curl -X GET "https://api.search-artemis.com/fly-search?search_query=HIPAA%20compliant%20companies&num_batches=2&clear_flag=true&top_k=5" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 ```python
 import requests
 
-url = "https://api.search-artemis.com/search"
+url = "https://api.search-artemis.com/fly-search"
 params = {
     "search_query": "HIPAA compliant companies",
     "num_batches": 2,

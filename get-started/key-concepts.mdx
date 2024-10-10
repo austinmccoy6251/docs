@@ -15,17 +15,17 @@ Artemis Search is built on several interconnected components that work together 
 
 This diagram illustrates the structure of Artemis Search, highlighting key relationships:
 
-1. **Organizations** consist of **projects**.
-2. Each **project** serves a particular search task. Each project may have multiple datasets but only one can be active at a time. Further, each project has dedicated machines to process search requests.
-3. **Datasets** are two-column pickled Pandas dataframes with two columns (`embedding` and `tags`), and only one at a time may be activated.
-4. **Machines** are cloud servers which process the search requests on the active dataset. These are automatically load balanced.
+1. [Organizations](/organizations-and-teams/managing-organizations) consist of **projects**.
+2. Each [project](/projects/understanding-projects) serves a particular search task. Each project may have multiple datasets but only one can be active at a time. Further, each project has dedicated machines to process search requests.
+3. [Datasets](/datasets/understanding-datasets) are two-column pickled Pandas dataframes with two columns (`embedding` and `tags`), and only one at a time may be activated.
+4. [Machines](/machines/understanding-machines) are cloud servers which process the search requests on the active dataset. These are automatically load balanced.
 
 Let's explore each of these components in more detail.
 
 ## Intelligent Search
 
 <Accordion title="What makes our search 'intelligent'?">
-  Artemis Search goes beyond traditional keyword matching or simple semantic similarity. Our technology excels at searches that require "reasoning," allowing it to understand and interpret complex queries in context.
+  Artemis Search goes beyond traditional keyword matching or semantic similarity. Our technology uses task-specialized ML ranking models to enable us to bake "reasoning" and "context" into searches. 
 
 For example, when searching for _"companies that require HIPAA compliance"_, our system doesn't just find companies related to medicine or HIPAA compliance. It actually reasons about which companies would be subject to HIPAA regulations based on their descriptions and activities.
 
@@ -33,7 +33,7 @@ For example, when searching for _"companies that require HIPAA compliance"_, our
 
 ## Projects
 
-Projects are the top-level entities in Artemis Search. Each project is dedicated to a particular search task.
+[Projects](/projects/understanding-projects) are the top-level entities in Artemis Search. Each project is dedicated to a particular search task.
 
 <Accordion title="What defines a project?">
   A project consists of:
@@ -48,7 +48,7 @@ Think of a project as a self-contained environment for a specific search use cas
 
 ## Datasets
 
-Datasets are the foundation of your searches. They contain the information that Artemis Search will process and query.
+[Datasets](/datasets/understanding-datasets) are the foundation of your searches. They contain the information that Artemis Search will process and query.
 
 <Accordion title="What's in a dataset?">
   Each dataset is a pickled (.pkl) pandas DataFrame with two essential columns:
@@ -61,7 +61,7 @@ You can have multiple datasets in a project, but only one can be active at a tim
 
 ## Machines
 
-Machines are the computational resources that power your searches.
+[Machines](/machines/understanding-machines) are the computational resources that power your searches.
 
 <Accordion title="How do machines work?">
     Each machine runs our ML model on the active dataset when responding to search requests. 
@@ -72,7 +72,7 @@ Machines are the computational resources that power your searches.
 
 ## Playground
 
-The playground is where you can experiment with and fine-tune your searches. Under the hood, it uses the API to perform searches.
+The [playground](/playground/using-the-playground) is where you can experiment with and fine-tune your searches. Under the hood, it uses the API to perform searches.
 
 <Accordion title="What can you do in the playground?">
     In the playground, you can: 
@@ -85,9 +85,9 @@ The playground is where you can experiment with and fine-tune your searches. Und
 ## Search Parameters
 
 <Accordion title="What parameters can you adjust?">
-  - **Synthetic Dataset Size**: Controls how much synthetic data is generated for each search request.
-  - **Probability Threshold**: Filters results to keep only those above a certain probability of matching the search query.
-  - **Top-K Threshold**: Limits the number of top results returned.
+  - **Synthetic Dataset Size**: Controls how much synthetic data is generated for each search request. This parameter must be between 1 and 70. Tuning this parameter allows you to balance between search accuracy and performance.
+  - **Probability Threshold**: Filters results to keep only those above a certain probability of matching the search query. This parameter must be between 0 and 1. Tuning this parameter truncates results but does not affect search time.
+  - **Top-K Threshold**: Limits the number of top results returned. This parameter must be between 1 and Infinity. Tuning this parameter truncates results but does not affect search time.
 
 Adjusting these parameters allows you to fine-tune the balance between search accuracy and performance.
 
@@ -99,7 +99,7 @@ Artemis Search provides a RESTful API for seamless integration with your applica
 
 <Accordion title="How to use the API?">
   - Each organization has its own API key for authentication.
-  - The main endpoint is `/search`, which accepts parameters like `search_query`, `num_batches`, `clear_flag`, and `top_k`.
+  - The main endpoint is `/fly-search`, which accepts parameters like `search_query`, `num_batches`, `clear_flag`, and `top_k`.
   - API requests must include your API token in the Authorization header.
 
 For detailed API documentation, check out our [API Reference](/api-reference) section.

@@ -3,7 +3,6 @@ title: "Understanding Datasets"
 description: "Learn about datasets in Artemis Search and how they power intelligent searches"
 ---
 
-Datasets are at the core of Artemis Search's intelligent search technology. They consist of embeddings and associated tags, enabling our advanced search capabilities that excel at "reasoning" and outperform traditional RAG systems.
 
 <Tip>
 We have provided a limited sample dataset for you to explore with. It contains ~19,000 company descriptions. In the case you are unable to find matches for your searches, we recommend uploading a bigger dataset.
@@ -11,13 +10,11 @@ We have provided a limited sample dataset for you to explore with. It contains ~
 
 ## What is a Dataset?
 
-A dataset in Artemis Search is a collection of:
-
-1. **Embeddings**: Vector representations of text data
-2. **Tags**: Associated string values that provide context or metadata for each embedding
+A Dataset stores the content that Artemis Search will search over.
+Datasets must be pickled pandas dataframes with an "embedding" column containing OpenAI text-large-3 embeddings and a "tag" column with associated string values.
 
 <Note>
-  Each dataset must be a pickled pandas dataframe with an "embedding" column containing OpenAI text-large-3 embeddings and a "tag" column with associated string values.
+  Artemis Search only searches through activated datasets.
 </Note>
 
 ## Key Concepts
@@ -45,13 +42,64 @@ Within a project, you can have multiple datasets, but only one can be active at 
   At least one dataset must be active for a project to be operational and allow searches.
 </Warning>
 
+## Creating a Dataset
+
+Datasets are simple to prepare but do require a few steps. Since there are many different workflows for creating datasets, we will present an example workflow for creating a dataset.
+
+<Tip>
+  We are happy to help prepare your dataset for you if you reach out to us at pallavi@artemisar.com.
+</Tip>
+
+### Background
+Suppose we have the following dataset stored in a Pandas dataframe:
+| company_description | company_name | id |
+|-----------|-----|-----|
+| 'Acme is a startup that makes widgets' | 'Acme' | 1 |
+| 'Wayne Enterprises is a startup that makes widgets' | 'Wayne Enterprises' | 2 |
+| 'Parker Industries is a startup that makes widgets' | 'Parker Industries' | 3 |
+
+### Example Workflow
+<Steps>
+  <Step title="Choosing Source Data">
+    Artemis Search datasets consist of embeddings of the text you want to search over as well as associated string tags for each embedding. These tags could represent IDs, names, or any other unique information associated with your embedding.
+
+    In our case, it would make the most sense to use `company_description` as the text we are embedding and the `id` as the tags. This choice makes sense since we want to be able to search over the company descriptions and the ids uniquely identify each company.
+  </Step>
+  <Step title="Preparing the Dataset">
+    
+    Ultimately, we need to end up with pickled Pandas dataframe where one column is 'embedding' and the other is 'tag'.
+
+    Given our initial dataframe, we will need to transform the `company_description` column into embeddings and the `id` column into string tags, and then store the result in a pickled Pandas dataframe.
+  
+    ```python
+    import pandas as pd
+
+    # Load Initial Dataframe
+    df = pd.read_csv('company_descriptions.csv')
+
+    # Create Embeddings
+    client = OpenAI(api_key=env.process.API_KEY)
+    text_to_embed = df['company_description'].tolist()
+    embedding_responses = client.embeddings.create(input=text_to_embed, model='text-embedding-3-large')
+    embeddings = np.vstack([embedding.embedding for embedding in embedding_responses.data])
+
+    # Create Final Dataframe
+    df['embedding'] = embeddings
+    df['tag'] = df['id'].astype(str)
+
+    # Save to Pickle
+    df.to_pickle('company_descriptions.pkl')
+    ```
+  </Step>
+</Steps>
+
 ## Next Steps
 
 Now that you understand the basics of datasets in Artemis Search, learn how to:
 
 <CardGroup cols={2}>
-  <Card title="Upload a Dataset" icon="upload" href="/datasets/upload-a-dataset">
-    Add your own data to Artemis Search
+  <Card title="Create a Dataset" icon="upload" href="/datasets/create-a-dataset">
+    Create a dataset for your project with your custom data
   </Card>
   <Card title="Manage Datasets" icon="list-check" href="/datasets/manage-datasets">
     View, activate, edit, and delete your datasets

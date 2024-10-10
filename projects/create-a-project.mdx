@@ -3,7 +3,6 @@ title: "Create a Project"
 description: "Learn how to create a new project in Artemis Search"
 ---
 
-Creating a new project in Artemis Search is a straightforward process. Follow these steps to set up your intelligent search task.
 
 ## Steps to Create a Project
 
@@ -19,7 +18,7 @@ Creating a new project in Artemis Search is a straightforward process. Follow th
     <ParamField body="name" type="string" required>
       Give your project a descriptive name.
     </ParamField>
-    <ParamField body="model_type" type="string" required>
+    <ParamField body="model_type" type="Mini" required>
       Currently, only the "Mini" model type is available.
     </ParamField>
   </Step>
@@ -32,22 +31,6 @@ Creating a new project in Artemis Search is a straightforward process. Follow th
   After creating your project, you'll need to add datasets and machines to make it active. These steps are covered in the [Manage Projects](/projects/manage-projects) guide.
 </Note>
 
-## Project Creation Best Practices
-
-<Accordion title="Choose a Clear and Descriptive Name">
-  Select a name that clearly indicates the purpose of your search task. This will help you and your team members easily identify and manage projects.
-</Accordion>
-
-<Accordion title="Plan Your Dataset">
-  Before creating a project, have a clear idea of the dataset you'll be using. Remember, each dataset must be a pickled pandas dataframe with specific requirements.
-</Accordion>
-
-<Accordion title="Consider Resource Allocation">
-  Think about how many machines you'll need for your project based on the expected search volume and complexity.
-  <Note>
-    If the search seems slow, you can add more machines to the project.
-  </Note>
-</Accordion>
 
 ## Next Steps
 

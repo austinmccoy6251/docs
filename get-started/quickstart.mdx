@@ -3,12 +3,12 @@ title: 'Quickstart'
 description: 'Get started with Artemis Search in minutes'
 ---
 
-Artemis Search is a powerful technology that allows you to perform "intelligent" searches on datasets consisting of embeddings and associated tags. Our search is designed to excel at searches that require "reasoning" and outperforms RAG.
+Artemis Search offers best-in-class vector database search technology for tailored search applications. Our task-specialized ML ranking models enable us, for specific tasks, to perform "intelligent searches" which bake reasoning and context into the search process to more accurately and precisely quantify search relevance compared to traditional vector database search technologies.
 
-<Note>To get started quickly, follow these steps to set up your first project and run a search.</Note>
 
 <iframe src="https://www.loom.com/embed/936ad3f6f8894f4a80e885a63bd59e56?sid=59eb210f-5dfb-4496-81cb-fcbaca62e444" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
+<Note>To get started quickly, follow these steps to set up your first project and run a search.</Note>
 
 ## 1. Sign up for an account
 
@@ -25,74 +25,91 @@ Create an account or log in to Artemis Search:
 
 ## 2. Create a project
 
-Projects are the highest level of organization, each dedicated to a specific search task.
+[Projects](/projects/understanding-projects) are the highest level of organization, each dedicated to a specific search task.
 
 Once logged in, you'll be taken to the dashboard:
 
-1. Click on the "Add Project" button.
+1. Click on the "Add Project" button at the top-right corner of the dashboard.
 2. Enter a name for your project.
 3. Choose the "Mini" model type (currently the only available option).
+4. Click on the "Create Project" button.
+5. Once you've created a project, you will see a card for your project on the dashboard.
+6. Click that card to enter your project
 
-## 3. Add a dataset
+## 3. Enter your project
+The project page is where you can manage your project details, datasets, and machines. 
+1. The top-left card is the "Project Details" card. This card is where you can view and edit information about your project, such as its name and model type.
+2. The card just below that is the "Datasets" card. This card is where you can view and manage the datasets associated with your project.
+3. The card just below that is the "Machines" card. This card is where you can view and manage the machines associated with your project.
+4. The top-right card is the "Project Status" card. This card shows important information about the status of your project and billing information.
 
-Datasets contain the information you want to search through, consisting of embeddings and associated tags.
+## 4. Adding a Dataset
 
-In your new project:
+Each project needs a [dataset](/datasets/understanding-datasets) which contains the information you want to search through, consisting of embeddings and associated tags. 
+You can manage and view your project's datasets from the "Datasets" card.
 
-1. Navigate to the "Datasets" card.
-2. Click "Add Dataset" at the bottom of the table.
-3. Name your dataset and upload your file.
-
-<Note>
-    Each dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a
-    "tag" column (containing associated string values).
-</Note>
+You should see a single default dataset in your "Datasets" table called "sample_company_dataset", consisting of 19000 company descriptions. This dataset is added for your convenience.
 
 <Tip>
-    You can use the provided `sample_company_dataset` with 1000 company descriptions from Crunchbase to get started quickly.
+    **Continue to the next step** if you'd prefer to use the default dataset instead of uploading your own custom dataset.
 </Tip>
 
-## 4. Activate your dataset
 
-Activating a dataset makes it the current dataset used for searches in your project.
 
-1. Click the ellipsis (⋮) next to your dataset in the table.
-2. Select "Activate" from the options.
+If you'd like to upload your own dataset, follow these steps:
+
+1. Click the "Add Dataset" button at the bottom of the "Datasets" table.
+2. Enter a name for your dataset.
+3. Click on the "Choose File" button and upload your dataset. This dataset must be a pickled pandas dataframe with an "embedding" column (containing OpenAI text-large-3 embeddings) and a "tag" column (containing associated string values).
+4. Finally, click on the "Add Dataset" button.
+5. This may take a few minutes to complete. Once the dataset is ready, you should see it appear in the "Datasets" table.
+
+
+
+
+## 5. Activate your dataset
+
+You need to activate a dataset to use it for searches in your project.
+
+1. Click the ellipsis (⋮) next to the dataset.
+2. Click "Activate" from the options.
+3. Once your dataset is activated, you should see the "Status" badge for that dataset turn to "Active"
 
 <Note>
     Only one dataset can be active per project. Activating a new dataset will automatically deactivate the previously active one.
 </Note>
 
-## 5. Add a machine
+## 6. Add a machine
 
-Machines are the computational resources that run our ML model on your dataset to process search requests.
+[Machines](/machines/understanding-machines) are the computational resources that run our ML model on your dataset to process search requests.
 
 1. Go to the "Machines" card.
 2. Click "Add Machine" at the bottom of the table.
-3. Wait for the machine to start up (stay on the page during this process).
+3. Wait for the machine to be added to the "Machines" table. This may take a few minutes.
+4. Once your machine is operational, you should see it appear in the "Machines" table.
 
-<Note>Adding a machine may take a few minutes. Your project needs at least one machine to be operational.</Note>
+<Tip>
+    At this point, your project is ready to run searches since you have an activated dataset and at least one operational machine.
+</Tip>
 
-## 6. Open the playground
+## 7. Open the playground
 
-The playground is where you can experiment with searches and fine-tune parameters.
+The [playground](/playground/using-the-playground) is where you can experiment with your project.
 
-Once your project is "active" (has at least one machine assigned and an activated dataset):
+1. Click the "Playground" button in the top-right corner of the project page.
 
-1. Click the "Open in Playground" button in the top-right corner of the project page.
-
-## 7. Run your first search
+## 8. Run your first search
 
 In the playground:
 
 1. Use the left column to configure your search settings:
-    - Adjust the "Synthetic Dataset Size" to control how much synthetic data is used for each search.
-    - Set the "Proba Threshold" to filter results based on their probability of matching the search.
-    - Adjust the "Top K Threshold" to limit the number of results returned.
+    - Adjust the "Synthetic Dataset Size" to control how much synthetic data is used for each search. This value must be between 1 and 70. The lower the value, the faster the search but the less accurate the results.
+    - Set the "Proba Threshold" to filter results based on their probability of matching the search. This value must be between 0 and 1. Tuning this value will affect the number of results returned but it will not make the search faster.
+    - Adjust the "Top K Threshold" to limit the number of results returned. This value must be between 1 and Infinity. Tuning this value will affect the search speed but it will not affect the accuracy of the results.
 2. Enter your search query in the "Search Query" text area.
 3. Click the "Complete Search" button.
 
-Your search results will appear in the right column, displaying the associated tags and probabilities for each result.
+Once your search is complete, your search results will appear in the right column, displaying the associated tags and probabilities for each result. This may take a minute or two to complete for your first search.
 
 <Check>Congratulations! You've just run your first intelligent search with Artemis Search.</Check>
 
