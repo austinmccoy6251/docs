@@ -12,7 +12,7 @@ openapi: 'POST /fly-search'
 ## Body
 
 <ParamField query="projectId" type="string" required>
-  The project ID to perform the search on. This is displayed in the URL when viewing your project on Artemis Search.
+  The project ID to perform the search on. This is displayed in the "Project Details" card on the project page.
 </ParamField>
 
 <ParamField query="searchQuery" type="string" required>
@@ -20,41 +20,53 @@ openapi: 'POST /fly-search'
 </ParamField>
 
 <ParamField query="numberOfBatches" type="integer" minimum="10" maximum="70" required>
-  The number of batches of synthetic data to generate for the search. Increasing this may improve search quality but will increase response time.
-</ParamField>
-
-<ParamField query="clearFlag" type="boolean" required>
-  If set to true, clears any cached results for this query.
+  The number of batches of synthetic data to generate for the search. This parameter may range from 10 to 70. Increasing this may improve search quality but will increase response time.
 </ParamField>
 
 <ParamField query="topK" type="integer" required>
-  The maximum number of results to return.
+  The maximum number of results to return. This parameter may range from 1 to Infinity. Changing this parameter will not affect search time.
 </ParamField>
 
 ## Response
 
-<ResponseField name="data" type="array | null">
+<ResponseField name="data" type="object">
   <Expandable title="properties">
-    <ResponseField name="tag" type="string">
-      The tag associated with the matching embedding.
+  <ResponseField name="state" type="string">
+      The state of the search. Will always be "success" if the search was successful.
     </ResponseField>
-    <ResponseField name="proba" type="number">
+    <ResponseField name="tags" type="string[]">
+      The tags associated with the search results 
+    </ResponseField>
+    <ResponseField name="proba" type="number[]">
       The probability that the result matches the search query, ranging from 0 to 1.
+    </ResponseField>
+    <ResponseField name="labels" type="(0|1)[]">
+      The labels associated with the search results. 0 means the result does not match the search query, 1 means the result matches the search query.
+    </ResponseField>
+    <ResponseField name="inference_time" type="number">
+      The time it took to run the search.
+    </ResponseField>
+    <ResponseField name="dataset_time" type="number">
+      The time it took to generate the synthetic dataset.
+    </ResponseField>
+    <ResponseField name="positive_descriptions" type="string[]">
+      The descriptions of the positive synthetic data.
+    </ResponseField>
+    <ResponseField name="contrast_and_negative_descriptions" type="string[]">
+      The descriptions of the contrast and negative synthetic data.
     </ResponseField>
   </Expandable>
 </ResponseField>
-
 <ResponseField name="success" type="boolean">
   Indicates if the search was successful.
 </ResponseField>
-
 <ResponseField name="errorMessage" type="string | null">
   An error message if the search was not successful.
 </ResponseField>
 
 <RequestExample>
 ```js Example Request
-fetch('https://api.search-artemis.com/search', {
+fetch('https://app.search-artemis.com/api/fly-search', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer YOUR_API_KEY`,
@@ -64,8 +76,7 @@ fetch('https://api.search-artemis.com/search', {
     projectId: 'YOUR_PROJECT_ID',
     searchQuery: 'companies that require HIPAA compliance',
     numberOfBatches: 50,
-    clearFlag: true,
-    topK: 5
+    topK: 4
   })
 })
 .then(response => response.json())
@@ -76,30 +87,63 @@ fetch('https://api.search-artemis.com/search', {
 <ResponseExample>
 ```json Response
 {
-  "data": [
-    {
-      "tag": "Acme Healthcare Solutions",
-      "proba": 0.95
-    },
-    {
-      "tag": "MediSecure Data Systems",
-      "proba": 0.92
-    },
-    {
-      "tag": "HealthGuard Technologies",
-      "proba": 0.89
-    },
-    {
-      "tag": "PatientPrivacy Inc.",
-      "proba": 0.87
-    },
-    {
-      "tag": "Compliance Med",
-      "proba": 0.85
-    }
-  ],
+  "data": {
+    "state": "success",
+    "tags": [
+      "Acme Healthcare Solutions",
+      "HealthGuard Technologies",
+      "PatientPrivacy Inc.",
+      "Compliance Med"
+    ],
+    "proba": [
+      0.95,
+      0.89,
+      0.87,
+      0.85
+    ],
+    "inference_time": 0.5,
+    "dataset_time": 5.2,
+    "positive_descriptions": [
+      "Acme Healthcare Solutions is a company that provides HIPAA compliant healthcare solutions.",
+      "..."
+    ],
+    "contrast_and_negative_descriptions": [
+      "HealthGuard Technologies is a company that provides surgical instruments to hospitals.",
+      "..."
+    ],
+    "labels": [
+      1,
+      0,
+      1,
+      0
+    ]
+  },
   "success": true,
   "errorMessage": null
 }
 ```
 </ResponseExample>
+
+## Error Response
+
+<ResponseField name="data" type="object | null">
+This field may be null if the search encountered a critical error.
+  <Expandable title="properties">
+  <ResponseField name="error" type="string">
+      The error message.
+    </ResponseField>
+    <ResponseField name="state" type="string">
+      The state of the search. Will always be "error" if the search was not successful.
+    </ResponseField>
+    <ResponseField name="error_type" type="no_bearer_token | invalid_bearer_token | api_key_not_set | invalid_api_key | dataframe_not_found | dataframe_missing_tag_column | dataframe_missing_embedding_column">
+      The type of error that occurred.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+<ResponseField name="success" type="boolean">
+  Indicates if the search was successful. This will always be false if the search was not successful.
+</ResponseField>
+<ResponseField name="errorMessage" type="string | null">
+  An error message if the search was not successful.
+</ResponseField>
+
