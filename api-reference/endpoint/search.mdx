@@ -26,6 +26,12 @@ openapi: 'POST /fly-search'
 <ParamField query="topK" type="integer" required>
   The maximum number of results to return. This parameter may range from 1 to Infinity. Changing this parameter will not affect search time.
 </ParamField>
+<ParamField query="clearFlag" type="boolean" required>
+  Whether to clear the cache for the search query. This will force the generation of a new synthetic dataset.
+</ParamField>
+<ParamField query="apiKey" type="string" required>
+  The API key to use for the search. This is your organization's API key. This parameter will eventually be deprecated.
+</ParamField>
 
 ## Response
 
