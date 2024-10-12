@@ -12,7 +12,7 @@
         }
     },
     "api": {
-        "baseUrl": "https://api.search-artemis.com",
+        "baseUrl": "https://api.search-artemis.com/api",
         "auth": {
             "method": "bearer"
         },
