@@ -11,14 +11,14 @@ Before you begin, ensure you have:
 
 1. An active Artemis Search account
 2. A project created in your dashboard
-3. A prepared dataset in the correct format (pickled pandas dataframe)
+3. A prepared dataset in the correct format (pandas dataframe saved as a parquet file)
 
 ## Dataset Format Requirements
 
 Your dataset must meet the following criteria:
 
 <Card title="Dataset Format" icon="table">
-  - File type: Pickled pandas dataframe
+  - File type: Pandas dataframe saved as a parquet file
   - Required columns:
     - `embedding`: OpenAI text-large-3 embeddings of text you want to search through
     - `tag`: String values associated with each embedding
@@ -41,7 +41,7 @@ Follow these steps to upload your dataset:
   <Step title="Provide Dataset Details">
     In the popup modal:
     1. Enter a name for your dataset
-    2. Click the upload area to select your pickled pandas dataframe file
+    2. Click the upload area to select the pandas dataframe saved as a parquet file
   </Step>
   <Step title="Confirm and Wait">
     Click "Upload" and wait for the process to complete. Do not navigate away from the page during this time.

@@ -11,7 +11,7 @@ We have provided a limited sample dataset for you to explore with. It contains ~
 ## What is a Dataset?
 
 A Dataset stores the content that Artemis Search will search over.
-Datasets must be pickled pandas dataframes with an "embedding" column containing OpenAI text-large-3 embeddings and a "tag" column with associated string values.
+Datasets must be pandas dataframes exported as a parquet file with an "embedding" column containing OpenAI text-large-3 embeddings and a "tag" column with associated string values.
 
 <Note>
   Artemis Search only searches through activated datasets.
@@ -67,9 +67,9 @@ Suppose we have the following dataset stored in a Pandas dataframe:
   </Step>
   <Step title="Preparing the Dataset">
     
-    Ultimately, we need to end up with pickled Pandas dataframe where one column is 'embedding' and the other is 'tag'.
+    Ultimately, we need to end up with Pandas dataframe exported as a parquet file where one column is 'embedding' and the other is 'tag'.
 
-    Given our initial dataframe, we will need to transform the `company_description` column into embeddings and the `id` column into string tags, and then store the result in a pickled Pandas dataframe.
+    Given our initial dataframe, we will need to transform the `company_description` column into embeddings and the `id` column into string tags, and then store the result as a parquet file.
   
     ```python
     import pandas as pd
@@ -88,8 +88,8 @@ Suppose we have the following dataset stored in a Pandas dataframe:
     df['embedding'] = embeddings
     df['tag'] = df['id'].astype(str)
 
-    # Save to Pickle
-    df.to_pickle('company_descriptions.pkl')
+    # Save as a Parquet File
+    df.to_parquet('../data/data.parquet')
     ```
   </Step>
 </Steps>

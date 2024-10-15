@@ -17,7 +17,7 @@ This diagram illustrates the structure of Artemis Search, highlighting key relat
 
 1. [Organizations](/organizations-and-teams/managing-organizations) consist of **projects**.
 2. Each [project](/projects/understanding-projects) serves a particular search task. Each project may have multiple datasets but only one can be active at a time. Further, each project has dedicated machines to process search requests.
-3. [Datasets](/datasets/understanding-datasets) are two-column pickled Pandas dataframes with two columns (`embedding` and `tags`), and only one at a time may be activated.
+3. [Datasets](/datasets/understanding-datasets) are two-column Pandas dataframes saved as parquet files with two columns (`embedding` and `tags`), and only one at a time may be activated.
 4. [Machines](/machines/understanding-machines) are cloud servers which process the search requests on the active dataset. These are automatically load balanced.
 
 Let's explore each of these components in more detail.
@@ -38,7 +38,7 @@ For example, when searching for _"companies that require HIPAA compliance"_, our
 <Accordion title="What defines a project?">
   A project consists of:
   - A unique name and description
-  - One or more datasets (each a pickled pandas DataFrame with embeddings and tags)
+  - One or more datasets (each a pandas DataFrame saved as a parquet file with embeddings and tags columns)
   - One or more machines
   - Configuration settings (e.g., model type)
 
@@ -51,7 +51,7 @@ Think of a project as a self-contained environment for a specific search use cas
 [Datasets](/datasets/understanding-datasets) are the foundation of your searches. They contain the information that Artemis Search will process and query.
 
 <Accordion title="What's in a dataset?">
-  Each dataset is a pickled (.pkl) pandas DataFrame with two essential columns:
+  Each dataset is a pandas DataFrame saved as a parquet file with two essential columns:
   1. `embedding`: Contains OpenAI text-large-3 embeddings of the text you want to search through.
   2. `tag`: Contains string values associated with each embedding, which will be returned as the content associated with each search result.
 
