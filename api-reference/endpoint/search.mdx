@@ -26,12 +26,11 @@ openapi: 'POST /search'
 <ParamField query="topK" type="integer" required>
   The maximum number of results to return. This parameter may range from 1 to Infinity. Changing this parameter will not affect search time.
 </ParamField>
-<ParamField query="clearFlag" type="boolean" required>
-  Whether to clear the cache for the search query. This will force the generation of a new synthetic dataset.
+
+<ParamField query="filterQuery" type="string">
+  The filter query string which enables you to filter the search results using the filter columns in the dataset. Learn more about filter queries [here](/search/search-parameters#filter-query).
 </ParamField>
-<ParamField query="apiKey" type="string" required>
-  The API key to use for the search. This is your organization's API key. This parameter will eventually be deprecated.
-</ParamField>
+
 
 ## Response
 
@@ -81,10 +80,9 @@ fetch('https://api.search-artemis.com/search', {
   body: JSON.stringify({
     projectId: 'YOUR_PROJECT_ID',
     searchQuery: 'companies that require HIPAA compliance',
+    filterQuery: 'company_size == "large"',
     numberOfBatches: 50,
     topK: 4,
-    clearFlag: true,
-    apiKey: 'YOUR_API_KEY'
   })
 })
 .then(response => response.json())
@@ -108,16 +106,6 @@ fetch('https://api.search-artemis.com/search', {
       0.89,
       0.87,
       0.85
-    ],
-    "inference_time": 0.5,
-    "dataset_time": 5.2,
-    "positive_descriptions": [
-      "Acme Healthcare Solutions is a company that provides HIPAA compliant healthcare solutions.",
-      "..."
-    ],
-    "contrast_and_negative_descriptions": [
-      "HealthGuard Technologies is a company that provides surgical instruments to hospitals.",
-      "..."
     ],
     "labels": [
       1,
@@ -143,7 +131,7 @@ This field may be null if the search encountered a critical error.
     <ResponseField name="state" type="string">
       The state of the search. Will always be "error" if the search was not successful.
     </ResponseField>
-    <ResponseField name="error_type" type="no_bearer_token | invalid_bearer_token | api_key_not_set | invalid_api_key | dataframe_not_found | dataframe_missing_tag_column | dataframe_missing_embedding_column">
+    <ResponseField name="error_type" type="no_bearer_token | invalid_bearer_token | api_key_not_set | invalid_api_key | metadata_not_found | filter_columns_not_found | filter_query_error | dataset_embedding_not_found | dataset_tag_not_found | dataset_empty">
       The type of error that occurred.
     </ResponseField>
   </Expandable>

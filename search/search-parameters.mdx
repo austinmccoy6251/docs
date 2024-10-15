@@ -13,10 +13,6 @@ description: "Understanding and configuring search parameters in Artemis Search"
   The number of synthetic data batches to generate for the search.
 </ParamField>
 
-<ParamField query="clear_flag" type="boolean" default="false">
-  Whether to clear previous search context.
-</ParamField>
-
 <ParamField query="top_k" type="integer" default="10">
   The maximum number of results to return.
 </ParamField>
@@ -44,7 +40,7 @@ When making API requests, you can include these parameters in your query string:
 <CodeGroup>
 
 ```bash
-curl -X GET "https://api.search-artemis.com/search?search_query=HIPAA%20compliant%20companies&num_batches=2&clear_flag=true&top_k=5" \
+curl -X GET "https://api.search-artemis.com/search?search_query=HIPAA%20compliant%20companies&num_batches=2&top_k=5" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -55,7 +51,6 @@ url = "https://api.search-artemis.com/search"
 params = {
     "search_query": "HIPAA compliant companies",
     "num_batches": 2,
-    "clear_flag": True,
     "top_k": 5
 }
 headers = {
@@ -71,10 +66,50 @@ response = requests.get(url, params=params, headers=headers)
   Remember to replace `YOUR_API_KEY` with your actual Artemis Search API key.
 </Note>
 
+## Advanced Search Parameters
+
+We also provide advanced search parameters that you can use to further refine your search results.
+
+### Filter Query
+
+If your dataset has [filter columns](/datasets/understanding-datasets#filter-columns), you can use the `filter_query` parameter to filter the search results using the filter columns in the dataset. 
+
+Your filter query should be included in the form `{ filter_query: "YOUR_FILTER_QUERY" }` in the body of your search request.
+
+The filter query you provide may be any valid Pandas query string and assume the 'python' engine is used to evaluate the query. Learn more about valid filter queries [here](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html).
+
+#### Example 1:
+If you had a dataset of companies with a filter column called `company_size` with the values `small`, `medium`, and `large`, you could filter the search results to only include search results with the `company_size` of 'large' by setting the `filter_query` parameter to `company_size == 'large'`.
+
+Your search body would look like this:
+
+```json
+{
+  ...
+  "filter_query": "company_size == 'large'"
+}
+```
+
+#### Example 2:
+If you had a dataset of companies with a filter column called `country` which contained the names of countries associated with each search result, you could filter the search results to only include search results with a `country` that started with `United` by setting the `filter_query` parameter to `country.str.contains('United', case=False, na=False)`.
+
+Your search body would look like this:
+
+```json
+{
+  ...
+  "filter_query": "country.str.contains('United', case=False, na=False)"
+}
+```
+
+
+<Warning>
+  You must have at least one filter column in your dataset to use the `filter_query` parameter.
+</Warning>
+
 ## Best Practices
 
 - Start with a larger `top_k` value and gradually decrease it as you refine your search.
-- Use `clear_flag=true` when starting a new search context to avoid interference from previous queries.
 - Experiment with different `num_batches` values to balance between search depth and response time.
 
 ## Next Steps

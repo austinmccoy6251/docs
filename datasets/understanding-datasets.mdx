@@ -26,8 +26,8 @@ Datasets must be pandas dataframes exported as a parquet file with an "embedding
   <Card title="Tags" icon="tag">
     Metadata associated with each embedding, returned as content in search results.
   </Card>
-  <Card title="Intelligent Search" icon="magnifying-glass-chart">
-    Our technology performs searches requiring "reasoning" beyond simple keyword matching.
+  <Card title="Filter Columns" icon="filter">
+    Columns in the dataset that can be used to filter the search results.
   </Card>
   <Card title="Project Association" icon="folder-tree">
     Datasets are linked to specific projects for organized search tasks.
@@ -93,6 +93,39 @@ Suppose we have the following dataset stored in a Pandas dataframe:
     ```
   </Step>
 </Steps>
+
+## Filter Columns
+
+Filter columns are columns in the dataset that can be referenced in the "filter_query" parameter of a search to filter the search results. Practically, they are any column in the dataset that is not named `embedding` or `tag`.
+
+<Warning>
+These columns cannot be named `embedding` or `tag` since these are reserved column names. 
+</Warning>
+
+### Example
+Suppose we have the following dataset stored in a Pandas dataframe:
+
+| company_description | company_name | id |
+|-----------|-----|-----|
+| 'Acme is a startup that makes widgets' | 'Acme' | 1 |
+| 'Parker Industries is a startup that makes widgets' | 'Parker Industries' | 3 |
+
+Now, suppose we want to be able to filter the search results by the `company_size` column. We would add `company_size` as a filter column and then reference it in the `filter_query` parameter of a search.
+
+Our new dataframe now looks like this:
+
+| company_description | company_name | id | company_size |
+|-----------|-----|-----|-----|
+| 'Acme is a startup that makes widgets' | 'Acme' | 1 | 'large' |
+| 'Wayne Enterprises is a startup that makes widgets' | 'Wayne Enterprises' | 2 | 'large' |
+| 'Parker Industries is a startup that makes widgets' | 'Parker Industries' | 3 | 'small' |
+
+You can now reference `company_size` in the `filter_query` parameter of a search. For example, you could filter the search results to only include companies with the `company_size` of 'large' by setting the `filter_query` parameter to `company_size == 'large'`.
+
+<Tip>
+  You can read more about filter queries [here](/search/search-parameters#filter-query).
+</Tip>
+
 
 ## Next Steps
 
