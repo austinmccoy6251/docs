@@ -32,12 +32,12 @@ openapi: 'POST /search'
 </ParamField>
 
 
-## Response
+## Success Response
 
 <ResponseField name="data" type="object">
   <Expandable title="properties">
-  <ResponseField name="state" type="string">
-      The state of the search. Will always be "success" if the search was successful.
+  <ResponseField name="state" type="success">
+      The state of the search will be "success" to indicate that the search was successful.
     </ResponseField>
     <ResponseField name="tags" type="string[]">
       The tags associated with the search results 
@@ -48,25 +48,13 @@ openapi: 'POST /search'
     <ResponseField name="labels" type="(0|1)[]">
       The labels associated with the search results. 0 means the result does not match the search query, 1 means the result matches the search query.
     </ResponseField>
-    <ResponseField name="inference_time" type="number">
-      The time it took to run the search.
-    </ResponseField>
-    <ResponseField name="dataset_time" type="number">
-      The time it took to generate the synthetic dataset.
-    </ResponseField>
-    <ResponseField name="positive_descriptions" type="string[]">
-      The descriptions of the positive synthetic data.
-    </ResponseField>
-    <ResponseField name="contrast_and_negative_descriptions" type="string[]">
-      The descriptions of the contrast and negative synthetic data.
-    </ResponseField>
   </Expandable>
 </ResponseField>
-<ResponseField name="success" type="boolean">
-  Indicates if the search was successful.
+<ResponseField name="success" type="true">
+  This field is always true if the search was successful.
 </ResponseField>
-<ResponseField name="errorMessage" type="string | null">
-  An error message if the search was not successful.
+<ResponseField name="error" type="null">
+  This field is always null if the search was successful.
 </ResponseField>
 
 <RequestExample>
@@ -115,31 +103,44 @@ fetch('https://api.search-artemis.com/search', {
     ]
   },
   "success": true,
-  "errorMessage": null
+  "error": null
 }
 ```
 </ResponseExample>
 
 ## Error Response
 
-<ResponseField name="data" type="object | null">
-This field may be null if the search encountered a critical error.
+<ResponseField name="data" type="null">
+  This field is always null if the search was not successful.
+</ResponseField>
+<ResponseField name="success" type="false">
+  Indicates the search was not successful.
+</ResponseField>
+<ResponseField name="error" type="object">
+  An error object containing the error message and code.
   <Expandable title="properties">
-  <ResponseField name="error" type="string">
-      The error message.
+    <ResponseField name="code" type="error_code">
+      The error code. Refer to the table below for possible error codes.
+
+      | Error Code | Description |
+      | ---------- | ----------- |
+      | `invalid_json` | The request body is not valid JSON. |
+      | `invalid_request_body` | The request body schema did not match the expected schema. |
+      | `internal_server_error` | An internal server error occurred. Please contact support. |
+      | `no_bearer_token` | The request is missing the `Authorization` header. |
+      | `invalid_bearer_token` | The API key is invalid. |
+      | `filter_columns_not_found` | The filter query attempted to filter on a column that does not exist. |
+      | `filter_query_error` | The filter query is not valid. Learn more about filter queries [here](/search/search-parameters#filter-query). |
+      | `dataset_embedding_not_found` | The dataset uploaded is missing the 'embedding' column. |
+      | `dataset_tag_not_found` | The dataset uploaded is missing the 'tag' column. |
+      | `dataset_empty` | The dataset uploaded is empty. |
+      | `invalid_top_k` | The top K is not valid. It must be an integer between 1 and Infinity. |
+      | `invalid_number_of_batches` | The number of batches is not valid. It must be an integer between 10 and 70. |
+      | `invalid_search_query` | The search query is invalid. It must be a non-empty string. |
     </ResponseField>
-    <ResponseField name="state" type="string">
-      The state of the search. Will always be "error" if the search was not successful.
-    </ResponseField>
-    <ResponseField name="error_type" type="no_bearer_token | invalid_bearer_token | api_key_not_set | invalid_api_key | metadata_not_found | filter_columns_not_found | filter_query_error | dataset_embedding_not_found | dataset_tag_not_found | dataset_empty">
-      The type of error that occurred.
+    <ResponseField name="message" type="string">
+      The error message explaining the error in detail.
     </ResponseField>
   </Expandable>
-</ResponseField>
-<ResponseField name="success" type="boolean">
-  Indicates if the search was successful. This will always be false if the search was not successful.
-</ResponseField>
-<ResponseField name="errorMessage" type="string | null">
-  An error message if the search was not successful.
 </ResponseField>
 
