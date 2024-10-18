@@ -78,6 +78,10 @@ Your filter query should be included in the form `{ filter_query: "YOUR_FILTER_Q
 
 The filter query you provide may be any valid Pandas query string and assume the 'python' engine is used to evaluate the query. Learn more about valid filter queries [here](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html).
 
+<Tip>
+  ChatGPT is a fantastic resource for generating filter queries.
+</Tip>
+
 #### Example 1:
 If you had a dataset of companies with a filter column called `company_size` with the values `small`, `medium`, and `large`, you could filter the search results to only include search results with the `company_size` of 'large' by setting the `filter_query` parameter to `company_size == 'large'`.
 
@@ -101,7 +105,6 @@ Your search body would look like this:
   "filter_query": "country.str.contains('United', case=False, na=False)"
 }
 ```
-
 
 <Warning>
   You must have at least one filter column in your dataset to use the `filter_query` parameter.
